@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 01 — Preguntas sobre HTTP</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; line-height: 1.7; }
+        h1 { font-size: 1.4em; border-bottom: 2px solid #333; padding-bottom: 8px; }
+        h2 { font-size: 1.05em; color: #333; margin-top: 28px; }
+        p { margin: 6px 0; }
+        .back { font-size: 0.9em; margin-bottom: 20px; display: block; }
+        .media-section { margin: 30px 0; padding: 15px; background: #fff; border: 1px solid #ddd; border-radius: 4px; }
+        img { max-width: 100%; height: auto; display: block; margin-top: 10px; }
+        video { max-width: 100%; display: block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <a class="back" href="../index.html">← Volver a HTML</a>
+    <h1>Ejercicio 01 — Preguntas sobre HTTP</h1>
+
+    <h2>1. ¿Sobre qué protocolo binario está montado el protocolo HTTP?</h2>
+    <p>El protocolo HTTP está montado sobre TCP (Transmission Control Protocol), que es un protocolo de la capa de transporte que garantiza la entrega ordenada y confiable de los datos entre cliente y servidor.</p>
+
+    <h2>2. ¿Cuáles son los clientes HTTP y los servidores HTTP más utilizados?</h2>
+    <p><strong>Clientes:</strong> Navegadores web (Chrome, Firefox, Safari, Edge), herramientas de consola como CURL, y librerías de lenguajes de programación (Python requests, Node.js fetch, etc.).</p>
+    <p><strong>Servidores:</strong> Apache, Nginx, IIS (Microsoft), y Node.js (Express).</p>
+
+    <h2>3. ¿Qué verbos admite un comando en el requerimiento HTTP?</h2>
+    <p>Los principales verbos (métodos) HTTP son: <strong>GET</strong> (obtener recurso), <strong>POST</strong> (enviar datos), <strong>PUT</strong> (reemplazar recurso), <strong>PATCH</strong> (modificar parcialmente), <strong>DELETE</strong> (eliminar recurso), <strong>HEAD</strong> (cabeceras sin body), <strong>OPTIONS</strong> (opciones disponibles) y <strong>CONNECT</strong> (túnel TCP).</p>
+
+    <h2>4. ¿Qué contenido lleva el body de un requerimiento HTTP?</h2>
+    <p>El body lleva los datos que el cliente envía al servidor. Aparece principalmente en solicitudes POST y PUT. Puede contener formularios HTML (application/x-www-form-urlencoded o multipart/form-data), JSON (application/json), XML, texto plano, o archivos binarios. Los requests GET típicamente no llevan body.</p>
+
+    <h2>5. ¿Qué diferencia existe entre un URL y un URI?</h2>
+    <p>Un <strong>URI</strong> (Uniform Resource Identifier) es un identificador genérico de cualquier recurso. Un <strong>URL</strong> (Uniform Resource Locator) es un tipo de URI que además especifica cómo localizar o acceder al recurso, incluyendo el protocolo y la ubicación (ej: https://www.ejemplo.com/pagina). Todo URL es un URI, pero no todo URI es un URL.</p>
+
+    <h2>6. ¿Cómo se almacena información relacionada con las respuestas HTTP?</h2>
+    <p>La información se almacena en <strong>caché</strong>. El servidor puede indicar mediante headers como <code>Cache-Control</code>, <code>ETag</code>, <code>Last-Modified</code> y <code>Expires</code> cómo y cuánto tiempo debe guardarse la respuesta. El cliente o proxies intermedios guardan copias para evitar solicitudes repetidas al servidor.</p>
+
+    <h2>7. ¿Qué significa HTTP sobre conexiones preexistentes?</h2>
+    <p>En HTTP/1.1 se introdujo el concepto de <strong>conexión persistente</strong> (keep-alive): en lugar de abrir y cerrar una conexión TCP por cada request, la misma conexión TCP se reutiliza para múltiples solicitudes sucesivas. Esto reduce la latencia y el overhead del handshaking repetido.</p>
+
+    <h2>8. ¿Qué significa Virtual hosting?</h2>
+    <p>Es la técnica que permite que un único servidor físico (con una sola dirección IP) aloje múltiples sitios web con distintos dominios. El servidor identifica a cuál sitio responder usando el header <code>Host</code> que el cliente envía en la solicitud HTTP.</p>
+
+    <h2>9. ¿Qué significa Cache por ETag?</h2>
+    <p>ETag (Entity Tag) es un identificador único que el servidor asigna a una versión específica de un recurso. Cuando el cliente vuelve a pedir ese recurso, envía el ETag en el header <code>If-None-Match</code>. Si el recurso no cambió, el servidor responde con <strong>304 Not Modified</strong> sin enviar el cuerpo, ahorrando ancho de banda.</p>
+
+    <h2>10. ¿Por qué el HTTP se considera STATE LESS?</h2>
+    <p>Porque cada solicitud HTTP es completamente independiente de las anteriores. El servidor no guarda ningún estado ni memoria de interacciones previas con el cliente. Cada request contiene toda la información necesaria para ser procesado. Para mantener estado (ej: sesiones de usuario) se utilizan mecanismos adicionales como cookies, tokens o variables de sesión.</p>
+
+    <h2>11. ¿Qué nueva versión de HTTP se está usando para mejorar la velocidad de la WEB?</h2>
+    <p>HTTP/2 y más recientemente <strong>HTTP/3</strong>. HTTP/2 introduce multiplexación (múltiples requests en paralelo por una sola conexión TCP), compresión de headers y server push. HTTP/3 reemplaza TCP por <strong>QUIC</strong> (protocolo UDP), eliminando el head-of-line blocking y mejorando aún más la velocidad.</p>
+
+    <h2>12. ¿Cómo va a mejorar el comportamiento de una aplicación WEB en ambientes ruidosos o de débil conexión?</h2>
+    <p>Principalmente gracias a <strong>HTTP/3 y QUIC</strong>. QUIC maneja mejor la pérdida de paquetes que TCP: en TCP, un paquete perdido bloquea toda la conexión; en QUIC, cada stream es independiente, por lo que la pérdida de un paquete solo afecta ese stream. Además QUIC implementa reconexión más rápida y reduce los handshakes iniciales mediante 0-RTT.</p>
+
+    <!-- Recursos multimedia del ejercicio -->
+    <div class="media-section">
+        <h2>Imagen de referencia: Estructura de mensajes HTTP</h2>
+        <img src="mensajeshttp.jpg" alt="Estructura de mensajes HTTP - requerimiento y respuesta">
+    </div>
+
+    <div class="media-section">
+        <h2>Video teórico: HTTP</h2>
+        <video controls>
+            <source src="http.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento video.
+        </video>
+    </div>
+
+</body>
+</html>
