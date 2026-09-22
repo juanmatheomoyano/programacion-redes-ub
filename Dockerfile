@@ -1,7 +1,7 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
-COPY . /var/www/html/
+COPY . /app
+WORKDIR /app
 
-RUN chown -R www-data:www-data /var/www/html
-
-EXPOSE 80
+EXPOSE 8080
+CMD php -S 0.0.0.0:${PORT:-8080}
