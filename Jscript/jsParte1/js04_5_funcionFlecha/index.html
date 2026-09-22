@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS11 - Función flecha</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 11: función flecha (arrow function)</h1>
+  <p><code>const multiplicar = (a, b) =&gt; { c = a * b; return c; }</code></p>
+
+  <input type="text" id="factorA" placeholder="Factor A">
+  <input type="text" id="factorB" placeholder="Factor B">
+  <button onclick="ejecutarMultiplicacion()">Multiplicar</button>
+  <input type="text" id="resultado" readonly>
+
+  <script>
+    /* Función flecha: sintaxis compacta equivalente a una función anónima tradicional */
+    const multiplicar = (a, b) => {
+      c = a * b;
+      return c;
+    };
+
+    function ejecutarMultiplicacion() {
+      let a = parseFloat(document.getElementById("factorA").value);
+      let b = parseFloat(document.getElementById("factorB").value);
+      document.getElementById("resultado").value = multiplicar(a, b);
+    }
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

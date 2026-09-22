@@ -1,0 +1,14 @@
+/* Estilos para todos los h1 del documento */
+h1 {
+  font-size: 2em;
+  color: darkblue;
+  text-align: center;
+  background-color: aquamarine;
+}
+
+/* Estilos para todos los p del documento */
+p {
+  color: darkslategray;
+  font-style: italic;
+  text-decoration: underline;
+}

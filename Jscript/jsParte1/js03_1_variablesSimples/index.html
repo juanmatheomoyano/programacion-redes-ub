@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS04 - Variables simples</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 4: variables simples</h1>
+
+  <!-- Cada botón asigna una variable y llama a muestra() para mostrar su valor y tipo -->
+  <button onclick="muestra('sinValor', sinValor)">var sinValor;</button>
+  <button onclick="texto = 'hola'; muestra('texto', texto)">let texto;</button>
+  <button onclick="num1 = 5; muestra('num1', num1)">var num1=5;</button>
+  <button onclick="num2 = '5'; muestra('num2', num2)">var num2="5";</button>
+  <button onclick="num3 = 3; muestra('num3', num3)">var num3=3;</button>
+  <button onclick="s1 = num1 + num2; muestra('s1', s1)">s1=num1+num2;</button>
+  <button onclick="s2 = num1 + num3; muestra('s2', s2)">s2=num1+num3;</button>
+
+  <!-- El resultado se muestra en este div sin recargar la página -->
+  <div id="resultado" style="background-color:lightgreen; min-height:160px; margin-top:16px; padding:10px;"></div>
+
+  <script>
+    /* Variables globales: declaradas afuera de toda función para que los botones puedan acceder a ellas */
+    var sinValor;
+    let texto;
+    var num1;
+    var num2;
+    var num3;
+    let s1;
+    let s2;
+
+    /* Escribe en el div el valor de la variable y su tipo de dato (typeof) */
+    function muestra(argNombre, argValor) {
+      document.getElementById("resultado").innerHTML =
+        "<h3>Valor de " + argNombre + ": " + argValor + "</h3>" +
+        "<h3>Tipo de " + argNombre + ": " + typeof argValor + "</h3>";
+    }
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

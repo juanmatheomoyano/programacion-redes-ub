@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Fondo fijo con background-attachment</title>
+<style>
+
+  body {
+    background-color: lightgray;
+  }
+
+  .cajaBg {
+    width: 60%;
+    height: 300px;
+    margin: 40px auto;
+    padding: 20px;
+    box-sizing: border-box; /* padding incluido dentro del width declarado */
+    border: solid 3px darkblue;
+    overflow-y: auto;       /* scroll interno si el contenido supera los 300px */
+    color: white;
+    font-weight: bold;
+    background-image: url('./manzanas.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed; /* la imagen queda fija respecto al viewport, no al div */
+  }
+
+</style>
+</head>
+<body>
+
+  <h1 style="text-align:center;">Fondo fijo (background-attachment: fixed)</h1>
+
+  <div class="cajaBg">
+    <p>El padding separa el texto del borde. Con box-sizing:border-box el padding se resta del
+    ancho declarado, por lo que la caja mide exactamente el width indicado.</p>
+    <p>Con background-attachment:fixed la imagen de fondo queda anclada al viewport: al hacer
+    scroll dentro del div el texto se mueve pero el fondo permanece quieto.</p>
+    <p>Texto adicional para forzar el scroll interno de la caja y poder observar el efecto:
+    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+  </div>
+
+  <p style="text-align:center;"><a href="../../index.html">Volver al índice de Css</a></p>
+
+</body>
+</html>

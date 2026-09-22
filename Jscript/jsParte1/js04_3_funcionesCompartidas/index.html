@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS09 - Funciones compartidas</title>
+<style>
+  button { width: 45px; height: 30px; }
+</style>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 9: funciones compartidas</h1>
+  <p>Teclado numérico implementado con una sola función que recibe el dígito como argumento.</p>
+
+  <p><input type="text" id="pantalla" readonly></p>
+
+  <!-- Cada botón llama a la misma función agregarDigito() pasando su propio número -->
+  <div>
+    <button onclick="agregarDigito(1)">1</button>
+    <button onclick="agregarDigito(2)">2</button>
+    <button onclick="agregarDigito(3)">3</button><br>
+    <button onclick="agregarDigito(4)">4</button>
+    <button onclick="agregarDigito(5)">5</button>
+    <button onclick="agregarDigito(6)">6</button><br>
+    <button onclick="agregarDigito(7)">7</button>
+    <button onclick="agregarDigito(8)">8</button>
+    <button onclick="agregarDigito(9)">9</button><br>
+    <button onclick="agregarDigito(0)">0</button>
+  </div>
+
+  <p>
+    <button onclick="sumarAlAcumulador()">+ Acumulador</button>
+    <button onclick="mostrarAcumulador()">Ver Acumulador</button>
+    <button onclick="borrarAcumulador()">Borrar Acumulador</button>
+    <button onclick="borrarPantalla()">Borrar pantalla</button>
+  </p>
+
+  <script>
+    let acumulador = 0;
+
+    /* Una sola función compartida por los diez botones: cada uno le pasa su dígito como argumento */
+    function agregarDigito(argDigito) {
+      let pantalla = document.getElementById("pantalla");
+      pantalla.value = pantalla.value + argDigito;
+    }
+
+    function sumarAlAcumulador() {
+      let pantalla = document.getElementById("pantalla");
+      acumulador = acumulador + parseFloat(pantalla.value);
+      pantalla.value = "";
+    }
+
+    function mostrarAcumulador() {
+      alert("Acumulador: " + acumulador);
+    }
+
+    function borrarAcumulador() {
+      acumulador = 0;
+    }
+
+    function borrarPantalla() {
+      document.getElementById("pantalla").value = "";
+    }
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

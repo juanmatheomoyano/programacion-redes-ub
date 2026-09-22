@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS18 - Creación de objetos</title>
+<style>
+  .bloque { background-color: #cce5ff; border: 1px solid #004085; padding: 10px; margin-bottom: 6px; font-weight: bold; }
+</style>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 18: creación y eliminación dinámica de elementos</h1>
+
+  <button onclick="crear()">Crear</button>
+  <button onclick="limpiar()">Limpiar</button>
+  <button onclick="info()">Info</button>
+
+  <div id="contenedor" style="background-color:#f8f9fa; padding:10px; margin-top:10px;"></div>
+
+  <script>
+    let contador = 0;
+
+    /* createElement crea un nuevo nodo div; appendChild lo agrega al final del contenedor */
+    function crear() {
+      contador++;
+      const div = document.createElement("div");
+      div.innerHTML = "Bloque creado: " + contador;
+      div.className = "bloque";
+      document.getElementById("contenedor").appendChild(div);
+    }
+
+    /* Elimina todos los hijos del contenedor de a uno hasta vaciarlo */
+    function limpiar() {
+      const contenedor = document.getElementById("contenedor");
+      while (contenedor.childNodes.length > 0) {
+        contenedor.removeChild(contenedor.childNodes[0]);
+      }
+      contador = 0;
+    }
+
+    function info() {
+      alert("Elementos en el contenedor: " + document.getElementById("contenedor").childNodes.length);
+    }
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

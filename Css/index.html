@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios CSS</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
-        h1 { font-size: 1.4em; border-bottom: 2px solid #333; padding-bottom: 8px; }
-        ul { line-height: 2; padding-left: 20px; }
-        a { color: #0066cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .back { font-size: 0.9em; margin-bottom: 20px; display: block; }
-        .pendiente { color: #999; font-style: italic; }
-    </style>
+<meta charset="UTF-8">
+<title>Índice de ejercicios de CSS</title>
+<style>
+  /* 1em = 32px: todos los tamaños relativos se calculan sobre esta base */
+  * { font-size: 32px; }
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1em; }
+  li { font-size: 0.5em; }
+  p  { font-size: 0.5em; }
+</style>
 </head>
-<body>
-    <a class="back" href="../index.html">← Volver al índice principal</a>
-    <h1>Índice de ejercicios de CSS</h1>
-    <ul>
-        <li class="pendiente">Ejercicios próximamente...</li>
-    </ul>
+<body style="font-family:Arial, sans-serif; margin:40px;">
+
+  <h1>Índice de ejercicios de CSS</h1>
+
+  <h2>Parte 1</h2>
+  <ul>
+    <li><a href="./cssParte1/css01StyleEnHeader/index.html">Estilos en el header (h1 y p con &lt;style&gt;)</a></li>
+    <li><a href="./cssParte1/css02SelectoresDeClase/index.html">Selectores de clase y de id</a></li>
+    <li><a href="./cssParte1/css03StyleEnFile/index.html">Hoja de estilos en archivo externo (.css)</a></li>
+    <li><a href="./cssParte1/css04FontSize/index.html">Tamaño de fuente responsivo con @media</a></li>
+    <li><a href="./cssParte1/css07BackgroundFijo/index.html">Fondo fijo con background-attachment</a></li>
+    <li><a href="./cssParte1/css08CentradoYPadding/index.html">Centrado y padding con box-sizing</a></li>
+    <li><a href="./cssParte1/css10DivsEnPila/index.html">Cajas apiladas con gradientes y @media</a></li>
+    <li><a href="./cssParte1/css11DivsEnFila/index.html">Cajas en fila con sombras (box-shadow)</a></li>
+    <li><a href="./cssParte1/css14DivsInternosEnColumnas/index.html">Encolumnado sin tablas (column-count)</a></li>
+    <li><a href="./cssParte1/css16SelectoresDeEvento/index.html">Pseudoclases: pestañas y galería con :hover/:target</a></li>
+  </ul>
+
+  <h2>Parte 2</h2>
+  <ul>
+    <li><a href="./cssParte2/css20DivsInternosRelativos/index.html">Posicionamiento relativo y ventana modal fija</a></li>
+    <li><a href="./cssParte2/css21DivsInternosAbsolutos/index.html">Posicionamiento absoluto con transform</a></li>
+    <li><a href="./cssParte2/css22CentradoVerticalCajaFlex/index.html">Centrado vertical y horizontal con flexbox</a></li>
+    <li><a href="./cssParte2/css25Menu/index.html">Menú desplegable con listas anidadas</a></li>
+    <li><a href="./cssParte2/css27FormsRWD/index.html">Formulario responsivo en grilla con @media</a></li>
+    <li><a href="./cssParte2/css29TablasRWD/index.html">Tabla responsiva con atributos personalizados</a></li>
+    <li><a href="./cssParte2/css30LayoutBasico/index.html">Maquetación básica: header, nav, main y footer</a></li>
+  </ul>
+
+  <p>El tamaño base es 32px = 1em. Los li y p tienen 0.5em (16px efectivos).</p>
+  <p><a href="../index.html">Volver al índice principal</a></p>
+
 </body>
 </html>

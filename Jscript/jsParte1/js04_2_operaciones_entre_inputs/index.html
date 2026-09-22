@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS08 - Operaciones entre inputs</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 8: operaciones entre inputs</h1>
+  <p>Ingresá valores en los tres campos y presioná la operación deseada.</p>
+
+  <p>Valor 1: <input type="text" id="val1" value="0"></p>
+  <p>Valor 2: <input type="text" id="val2" value="0"></p>
+  <p>Valor 3: <input type="text" id="val3" value="0"></p>
+  <p>Resultado: <input type="text" id="resultado" value="0"></p>
+
+  <button onclick="calcularSuma()">Suma</button>
+  <button onclick="calcularPromedio()">Promedio</button>
+  <button onclick="calcularMayor()">Mayor</button>
+
+  <script>
+    function calcularSuma() {
+      let v1 = parseFloat(document.getElementById("val1").value);
+      let v2 = parseFloat(document.getElementById("val2").value);
+      let v3 = parseFloat(document.getElementById("val3").value);
+      document.getElementById("resultado").value = v1 + v2 + v3;
+    }
+
+    function calcularPromedio() {
+      let v1 = parseFloat(document.getElementById("val1").value);
+      let v2 = parseFloat(document.getElementById("val2").value);
+      let v3 = parseFloat(document.getElementById("val3").value);
+      document.getElementById("resultado").value = (v1 + v2 + v3) / 3;
+    }
+
+    function calcularMayor() {
+      let v1 = parseFloat(document.getElementById("val1").value);
+      let v2 = parseFloat(document.getElementById("val2").value);
+      let v3 = parseFloat(document.getElementById("val3").value);
+      /* Se compara de a pares para encontrar el mayor de los tres */
+      let maximo = v1;
+      if (v2 > maximo) { maximo = v2; }
+      if (v3 > maximo) { maximo = v3; }
+      document.getElementById("resultado").value = maximo;
+    }
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

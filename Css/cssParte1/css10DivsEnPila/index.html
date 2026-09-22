@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cajas apiladas con gradientes y @media</title>
+<style>
+
+  body {
+    background-color: slategray;
+    margin: 0;
+  }
+
+  .caja {
+    width: 100%;
+    height: 200px;
+    box-sizing: border-box;
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+  }
+
+  /* Div1 cambia de color según el ancho del viewport */
+  #div1 {
+    background-color: lightsteelblue; /* default: pantallas angostas */
+  }
+
+  @media (min-width: 600px) and (max-width: 1080px) {
+    #div1 {
+      background-color: khaki;
+      color: black;
+    }
+  }
+
+  @media (min-width: 1080px) {
+    #div1 {
+      background-color: dimgray;
+    }
+  }
+
+  /* Gradiente radial como fondo */
+  #div2 {
+    background: radial-gradient(circle, dodgerblue, darkorchid);
+  }
+
+  /* Imagen de fondo combinada con gradiente lineal semitransparente */
+  #div3 {
+    background-image:
+      linear-gradient(to right, darkorchid, transparent 20%, transparent 80%, dodgerblue),
+      url('./monte-fuji-sakura.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Gradiente lineal simple */
+  #div4 {
+    background: linear-gradient(to right, dodgerblue, white);
+    color: black;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1 style="color:white;text-align:center;padding:20px;">Cajas en pila</h1>
+
+  <div id="div1" class="caja">
+    Fondo gris oscuro para viewports mayores a 1080px.
+    Fondo amarillo paja para viewports entre 600px y 1080px.
+    Fondo azul acero claro para viewports menores a 600px.
+  </div>
+
+  <div id="div2" class="caja">
+    Gradiente radial como fondo.
+  </div>
+
+  <div id="div3" class="caja">
+  </div>
+
+  <div id="div4" class="caja">
+    Gradiente lineal de izquierda a derecha.
+  </div>
+
+  <p style="text-align:center;padding:20px;">
+    <a href="../../index.html" style="color:white;">Volver al índice de Css</a>
+  </p>
+
+</body>
+</html>

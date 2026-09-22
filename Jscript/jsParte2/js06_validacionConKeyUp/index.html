@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS16 - Validación con keyup</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 16: validación de un input en el evento keyup</h1>
+
+  <form id="formEdad">
+    <p>Ingresá tu edad: <input type="number" id="edad" min="1" max="120" required></p>
+    <p>Ingresá el año de nacimiento: <input type="number" id="anio" min="1900" max="2025" required></p>
+    <button type="submit" id="btnEnviar" disabled>Enviar</button>
+    <button type="reset" id="btnLimpiar">Limpiar</button>
+  </form>
+
+  <script>
+    /* Habilita el botón Enviar solo cuando los dos campos cumplen las restricciones HTML5 (checkValidity) */
+    function verificarFormulario() {
+      document.getElementById("btnEnviar").disabled = !document.getElementById("formEdad").checkValidity();
+    }
+
+    /* keyup se dispara cada vez que el usuario suelta una tecla dentro del campo */
+    document.getElementById("edad").addEventListener("keyup", verificarFormulario);
+    document.getElementById("anio").addEventListener("keyup", verificarFormulario);
+
+    /* Al limpiar el form se vuelve a deshabilitar el botón Enviar */
+    document.getElementById("btnLimpiar").addEventListener("click", function() {
+      document.getElementById("btnEnviar").disabled = true;
+    });
+
+    /* preventDefault evita que el form recargue la página al enviarse */
+    document.getElementById("formEdad").addEventListener("submit", function(evento) {
+      evento.preventDefault();
+      alert("Edad: " + document.getElementById("edad").value + " | Año: " + document.getElementById("anio").value);
+    });
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

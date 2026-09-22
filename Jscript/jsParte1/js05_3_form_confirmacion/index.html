@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS13 - Formulario con confirmación</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 13: confirmación antes de enviar</h1>
+
+  <!-- onsubmit devuelve el valor de confirm(): si el usuario cancela, devuelve false y el form no se envía -->
+  <form id="formContacto" method="get" action="respuestaFormulario.html"
+        onsubmit="return confirm('¿Confirma el envío del formulario?')">
+    <p>Nombre: <input type="text" name="nombre" id="nombre"></p>
+    <p>Apellido: <input type="text" name="apellido" id="apellido"></p>
+    <button type="reset">Limpiar</button>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

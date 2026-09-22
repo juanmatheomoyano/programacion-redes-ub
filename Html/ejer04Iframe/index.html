@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Iframes: ejercicios embebidos, PDF y video</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <!-- Índice de anclas para navegar dentro de la página -->
+  <h1>Índice</h1>
+  <ol>
+    <li><a href="#ejer01">Preguntas HTTP</a></li>
+    <li><a href="#ejer02">Tablas</a></li>
+    <li><a href="#ejer03">Formulario</a></li>
+    <li><a href="#archivoPdf">Archivo PDF</a></li>
+    <li><a href="#videoLocal">Video local</a></li>
+    <li><a href="#videoYoutube">Video de YouTube</a></li>
+  </ol>
+
+  <h2>Iframe: embeber páginas, archivos PDF y videos</h2>
+
+  <!-- iframe carga el ejercicio 01 dentro de esta página -->
+  <h3 id="ejer01">Preguntas HTTP</h3>
+  <iframe src="../ejer01PreguntasHTTP/index.html" style="height:50vh;width:80%;border:solid;"></iframe>
+
+  <!-- iframe carga el ejercicio 02 -->
+  <h3 id="ejer02">Tablas</h3>
+  <iframe src="../ejer02Tablas/index.html" style="height:50vh;width:80%;border:solid;"></iframe>
+
+  <!-- iframe carga el ejercicio 03 -->
+  <h3 id="ejer03">Formulario</h3>
+  <iframe src="../ejer03Formularios/index.html" style="height:50vh;width:80%;border:solid;"></iframe>
+
+  <!-- iframe puede mostrar PDF directamente si el navegador lo soporta -->
+  <h3 id="archivoPdf">Archivo PDF</h3>
+  <iframe src="./apunte.pdf" style="height:50vh;width:80%;border:solid;"></iframe>
+
+  <!-- etiqueta video para reproducir un archivo local -->
+  <h3 id="videoLocal">Video local</h3>
+  <video src="./video-local.mp4" controls style="max-width:80%;"></video>
+
+  <!-- iframe con el embed de YouTube (código provisto por la plataforma) -->
+  <h2>Video de YouTube embebido</h2>
+  <h3 id="videoYoutube">Big Buck Bunny</h3>
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/aqz-KE-bpKQ"
+    title="Big Buck Bunny"
+    frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <p>
+    <a href="../index.html">Volver al índice de Html</a> |
+    <a href="../../index.html">Volver al índice principal</a>
+  </p>
+
+</body>
+</html>

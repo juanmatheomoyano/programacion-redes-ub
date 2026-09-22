@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Posicionamiento relativo y ventana modal</title>
+<style>
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: darkslateblue; /* franja visible donde el contenido no llega al 100% */
+  }
+
+  .contenido {
+    max-width: 70%;
+    background-color: #fffde0;
+    padding: 20px;
+  }
+
+  /* position:relative es el valor por defecto; se declara explícitamente para evidenciarlo */
+  .bloqueVerde {
+    position: relative;
+    margin-top: 10px;
+    background-color: seagreen;
+    color: white;
+    padding: 10px;
+  }
+
+  .bloqueAmarillo {
+    position: relative;
+    margin-top: 10px;
+    background-color: goldenrod;
+    padding: 10px;
+  }
+
+  /* Altura fija con overflow:auto genera barra de scroll cuando el contenido la supera */
+  .bloqueMarron {
+    position: relative;
+    margin-top: 10px;
+    background-color: sienna;
+    color: white;
+    border: solid 2px saddlebrown;
+    padding: 10px;
+    height: 80px;
+    overflow-y: auto;
+  }
+
+  .filaResaltada {
+    background-color: darkorange;
+  }
+
+  /* position:fixed ubica el elemento respecto al viewport, no al flujo del documento */
+  .ventanaModal {
+    position: fixed;
+    width: 40%;
+    height: 40%;
+    top: 20%;
+    left: 25%;
+    opacity: 0.5;          /* 50% de transparencia: se ve el contenido de detrás */
+    overflow-y: auto;
+    z-index: 10;            /* queda por delante de todos los demás elementos */
+    background-color: mediumpurple;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="contenido">
+
+    <h1>Contenedores con posicionamiento relativo</h1>
+
+    <div class="bloqueVerde">Bloque verde — posición relativa (valor por defecto)</div>
+    <div class="bloqueVerde">Bloque verde — posición relativa</div>
+
+    <div class="bloqueAmarillo">Bloque amarillo</div>
+    <div class="bloqueAmarillo">
+      Bloque amarillo con múltiples líneas<br>
+      línea 2<br>línea 3<br>línea 4<br>línea 5
+    </div>
+
+    <div class="bloqueMarron">
+      Bloque marrón con altura fija y scroll<br>
+      texto texto texto<br>texto texto texto<br>
+      <span class="filaResaltada">texto resaltado</span>
+    </div>
+
+  </div>
+
+  <!-- La ventana modal flota sobre todo el contenido gracias a position:fixed y z-index -->
+  <div class="ventanaModal">
+    Ventana modal<br>
+    Ventana modal<br>
+    Ventana modal<br>
+    Ventana modal<br>
+    Ventana modal
+  </div>
+
+  <p><a href="../../index.html">Volver al índice de Css</a></p>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Posicionamiento absoluto con transform</title>
+<style>
+
+  /* html y body al 100% de alto para que los absolutos puedan usar % de alto */
+  html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #d0e8f0;
+  }
+
+  h1 {
+    text-align: center;
+    padding: 10px;
+  }
+
+  /* position:absolute: coordenadas respecto al ancestro con position no estático */
+  #bloque1 {
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 40%;
+    height: 40%;
+    overflow: auto;
+    font-size: 1vw; /* unidad relativa al ancho del viewport */
+    z-index: 2;
+    background-color: mediumspringgreen;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  /* z-index:3 queda por encima de bloque1 (z-index:2) */
+  #bloque3 {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    overflow: auto;
+    font-size: 1vw;
+    z-index: 3;
+    background-color: #aaaaaa;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  #bloque2 {
+    position: absolute;
+    top: 60%;
+    left: 55%;
+    width: 250px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    /* rotateZ gira el elemento sobre el eje Z (perpendicular a la pantalla) */
+    transform: rotateZ(-15deg);
+  }
+
+  .barraRotada {
+    background-color: mediumseagreen;
+    padding: 6px;
+  }
+
+  /* translateX desplaza la imagen hacia la izquierda un 20% de su propio ancho */
+  .imgDesplazada {
+    display: block;
+    margin-top: 20px;
+    max-width: 300px;
+    transform: translateX(-20%);
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>Posicionamiento absoluto adaptable al viewport</h1>
+
+  <div id="bloque1">
+    Bloque 1 (z-index:2).<br>
+    contenido adicional para mostrar el scroll interno cuando supera el alto del div.
+  </div>
+
+  <div id="bloque3">
+    Bloque 3 (z-index:3): queda por encima del bloque 1.<br>
+    contenido adicional para mostrar el scroll interno.
+  </div>
+
+  <div id="bloque2">
+    <div class="barraRotada">Bloque 2 rotado -15°</div>
+    <img class="imgDesplazada" src="./montana-nevada.jpg" alt="Montaña nevada">
+  </div>
+
+  <p style="position:absolute; bottom:10px; left:10px;">
+    <a href="../../index.html">Volver al índice de Css</a>
+  </p>
+
+</body>
+</html>

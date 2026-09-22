@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Centrado vertical y horizontal con flexbox</title>
+<style>
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #e8f5e9;
+  }
+
+  /* display:flex activa el modelo de caja flexible */
+  .contenedorFlex {
+    display: flex;
+    justify-content: center; /* centra en el eje principal (horizontal por defecto) */
+    align-items: center;     /* centra en el eje secundario (vertical) */
+    gap: 30px;
+    height: 100%;
+  }
+
+  /* object-fit:cover recorta la imagen para llenar el cuadrado sin deformarla */
+  .contenedorFlex img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="contenedorFlex">
+    <img src="./flores-cosmos.jpg" alt="Flores cosmos">
+    <img src="./flores-cosmos.jpg" alt="Flores cosmos">
+    <img src="./flores-cosmos.jpg" alt="Flores cosmos">
+  </div>
+
+  <p style="position:fixed; bottom:10px; left:10px;">
+    <a href="../../index.html">Volver al índice de Css</a>
+  </p>
+
+</body>
+</html>

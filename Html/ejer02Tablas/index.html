@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tablas con celdas combinadas</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio de tablas</h1>
+
+  <!-- Tabla de referencia: grilla sin combinar celdas -->
+  <h2>Grilla base sin celdas combinadas</h2>
+  <p>Matriz de referencia de 8 columnas por 7 filas. Cada celda muestra su coordenada Fila-Columna.</p>
+  <table style="border-collapse:collapse;">
+    <tr>
+      <td style="width:60px;height:30px;border:solid thin;">F1C1</td>
+      <td style="width:60px;height:30px;border:solid thin;">F1C2</td>
+      <td style="width:60px;height:30px;border:solid thin;">F1C3</td>
+      <td style="width:60px;height:30px;border:solid thin;">F1C4</td>
+      <td style="width:60px;height:30px;border:solid thin;">F1C5</td>
+      <td style="width:60px;height:30px;border:solid thin;">F1C6</td>
+      <td style="width:60px;height:30px;border:solid thin;">F1C7</td>
+      <td style="width:60px;height:30px;border:solid thin;">F1C8</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;">F2C1</td><td style="border:solid thin;">F2C2</td>
+      <td style="border:solid thin;">F2C3</td><td style="border:solid thin;">F2C4</td>
+      <td style="border:solid thin;">F2C5</td><td style="border:solid thin;">F2C6</td>
+      <td style="border:solid thin;">F2C7</td><td style="border:solid thin;">F2C8</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;">F3C1</td><td style="border:solid thin;">F3C2</td>
+      <td style="border:solid thin;">F3C3</td><td style="border:solid thin;">F3C4</td>
+      <td style="border:solid thin;">F3C5</td><td style="border:solid thin;">F3C6</td>
+      <td style="border:solid thin;">F3C7</td><td style="border:solid thin;">F3C8</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;">F4C1</td><td style="border:solid thin;">F4C2</td>
+      <td style="border:solid thin;">F4C3</td><td style="border:solid thin;">F4C4</td>
+      <td style="border:solid thin;">F4C5</td><td style="border:solid thin;">F4C6</td>
+      <td style="border:solid thin;">F4C7</td><td style="border:solid thin;">F4C8</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;">F5C1</td><td style="border:solid thin;">F5C2</td>
+      <td style="border:solid thin;">F5C3</td><td style="border:solid thin;">F5C4</td>
+      <td style="border:solid thin;">F5C5</td><td style="border:solid thin;">F5C6</td>
+      <td style="border:solid thin;">F5C7</td><td style="border:solid thin;">F5C8</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;">F6C1</td><td style="border:solid thin;">F6C2</td>
+      <td style="border:solid thin;">F6C3</td><td style="border:solid thin;">F6C4</td>
+      <td style="border:solid thin;">F6C5</td><td style="border:solid thin;">F6C6</td>
+      <td style="border:solid thin;">F6C7</td><td style="border:solid thin;">F6C8</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;">F7C1</td><td style="border:solid thin;">F7C2</td>
+      <td style="border:solid thin;">F7C3</td><td style="border:solid thin;">F7C4</td>
+      <td style="border:solid thin;">F7C5</td><td style="border:solid thin;">F7C6</td>
+      <td style="border:solid thin;">F7C7</td><td style="border:solid thin;">F7C8</td>
+    </tr>
+  </table>
+
+  <!-- Tabla con rowspan y colspan aplicados -->
+  <h2>Tabla con celdas combinadas: horario de cursada</h2>
+  <p>
+    Los días se agrupan con <code>colspan="3"</code> (mañana/tarde/noche)
+    y cada sede se agrupa verticalmente con <code>rowspan="3"</code> sobre sus tres aulas.
+  </p>
+  <table style="border-collapse:collapse;">
+
+    <!-- Fila de encabezado: días de la semana, cada uno ocupa 3 columnas (M/T/N) -->
+    <tr>
+      <td style="border:solid thin;background-color:lightblue;"></td>
+      <td style="border:solid thin;background-color:lightblue;"></td>
+      <td colspan="3" style="border:solid thin;background-color:lightblue;text-align:center;">LUNES</td>
+      <td colspan="3" style="border:solid thin;background-color:lightblue;text-align:center;">MARTES</td>
+      <td colspan="3" style="border:solid thin;background-color:lightblue;text-align:center;">MIÉRCOLES</td>
+      <td colspan="3" style="border:solid thin;background-color:lightblue;text-align:center;">JUEVES</td>
+      <td colspan="3" style="border:solid thin;background-color:lightblue;text-align:center;">VIERNES</td>
+    </tr>
+
+    <!-- Fila de sub-encabezado: turnos M=Mañana, T=Tarde, N=Noche -->
+    <tr>
+      <td style="border:solid thin;background-color:lightblue;"></td>
+      <td style="border:solid thin;background-color:lightblue;"></td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">M</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">T</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">N</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">M</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">T</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">N</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">M</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">T</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">N</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">M</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">T</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">N</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">M</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">T</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">N</td>
+    </tr>
+
+    <!-- SEDE A: rowspan="3" agrupa las 3 aulas en una sola celda vertical -->
+    <tr>
+      <td rowspan="3" style="border:solid thin;background-color:lightblue;text-align:center;">SEDE A</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">Aula 1</td>
+      <td style="width:40px;height:25px;border:solid thin;">-</td><td style="width:40px;height:25px;border:solid thin;">-</td><td style="width:40px;height:25px;border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">Aula 2</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">Aula 3</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+    </tr>
+
+    <!-- SEDE B: misma estructura que SEDE A -->
+    <tr>
+      <td rowspan="3" style="border:solid thin;background-color:lightblue;text-align:center;">SEDE B</td>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">Aula 1</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">Aula 2</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+    </tr>
+    <tr>
+      <td style="border:solid thin;background-color:lightblue;text-align:center;">Aula 3</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+      <td style="border:solid thin;">-</td><td style="border:solid thin;">-</td><td style="border:solid thin;">-</td>
+    </tr>
+
+  </table>
+
+  <p><a href="../index.html">Volver al índice de Html</a></p>
+
+</body>
+</html>

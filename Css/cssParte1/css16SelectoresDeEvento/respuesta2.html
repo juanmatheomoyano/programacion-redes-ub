@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Selectores de evento - Opción 2</title>
+<style>
+
+  .barraTabs {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+
+  .barraTabs li { margin-right: 4px; }
+
+  .barraTabs a {
+    display: block;
+    padding: 10px 20px;
+    background-color: #cccccc;
+    color: darkblue;
+    text-decoration: none;
+  }
+
+  .barraTabs a:hover { background-color: darkblue; color: white; }
+  .barraTabs a:active { background-color: darkred; color: white; }
+
+  .tabActiva {
+    background-color: darkblue !important;
+    color: white !important;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>Selectores de evento (pseudoclases)</h1>
+
+  <ul class="barraTabs">
+    <li><a href="./index.html">Opción 1</a></li>
+    <li><a class="tabActiva" href="./respuesta2.html">Opción 2</a></li>
+    <li><a href="./respuesta3.html">Opción 3</a></li>
+  </ul>
+
+  <p>Contenido de la Opción 2.</p>
+
+  <p><a href="../../index.html">Volver al índice de Css</a></p>
+
+</body>
+</html>

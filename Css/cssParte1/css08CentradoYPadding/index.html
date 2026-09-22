@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Centrado y padding con box-sizing</title>
+<style>
+
+  /* Caja base: 50% del ancho del contenedor, centrada con margin:auto */
+  .caja {
+    width: 50%;
+    margin: 20px auto;
+    border: solid 2px #333;
+  }
+
+  /* Sin padding: el texto queda pegado al borde */
+  .cajaSinPadding {
+    background-color: lightpink;
+  }
+
+  /* Con padding pero sin box-sizing: la caja crece más allá del 50% declarado */
+  .cajaConPaddingSinBorderBox {
+    background-color: lightskyblue;
+    padding: 30px;
+  }
+
+  /* Con padding y box-sizing:border-box: el ancho se mantiene en exactamente el 50% */
+  .cajaConBorderBox {
+    background-color: lightgreen;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1 style="text-align:center;">Los tres divs tienen un ancho declarado del 50% de la ventana</h1>
+
+  <div class="caja cajaSinPadding">
+    <p>Sin padding: el texto queda pegado al borde de la caja.</p>
+  </div>
+
+  <div class="caja cajaConPaddingSinBorderBox">
+    <p>Con padding y sin box-sizing: la caja supera el 50% del ancho porque el padding
+    se suma al width declarado.</p>
+  </div>
+
+  <div class="caja cajaConBorderBox">
+    <p>Con padding y con box-sizing:border-box: la caja respeta exactamente el 50%
+    del ancho porque el padding se resta del interior.</p>
+  </div>
+
+  <p style="text-align:center;"><a href="../../index.html">Volver al índice de Css</a></p>
+
+</body>
+</html>

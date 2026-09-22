@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Menú desplegable con listas anidadas</title>
+<style>
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Elimina viñetas de todas las listas dentro del menú */
+  #menuPrincipal ul {
+    list-style: none;
+  }
+
+  /* Color de fondo de los ítems de primer nivel */
+  #menuPrincipal > ul > li {
+    background-color: #1a3a6b;
+    position: relative; /* necesario para que el submenú se posicione respecto a él */
+    float: left;         /* los ítems del nivel superior van en fila */
+  }
+
+  /* El anchor ocupa todo el ancho del li para que el área clicable sea completa */
+  #menuPrincipal ul a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 12px 16px;
+  }
+
+  #menuPrincipal ul a:hover {
+    background-color: #0d2245;
+  }
+
+  /* Submenú oculto por defecto */
+  #menuPrincipal ul ul {
+    display: none;
+    position: absolute; /* se posiciona respecto al li padre (position:relative) */
+    top: 100%;           /* justo debajo del ítem padre */
+    left: 0;
+    width: 220px;
+  }
+
+  /* Ítems del submenú: van apilados verticalmente */
+  #menuPrincipal ul ul li {
+    float: none;
+    width: 100%;
+    background-color: #142d52;
+  }
+
+  /* Muestra el submenú al pasar el mouse sobre el li padre */
+  #menuPrincipal ul li:hover > ul {
+    display: block;
+  }
+
+  main {
+    padding: 80px 20px 20px;
+  }
+
+</style>
+</head>
+<body>
+
+  <nav id="menuPrincipal">
+    <ul>
+      <li>
+        <a href="../../../Html/index.html">HTML</a>
+        <ul>
+          <li><a href="../../../Html/ejer01PreguntasHTTP/index.html">Preguntas HTTP</a></li>
+          <li><a href="../../../Html/ejer02Tablas/index.html">Tablas</a></li>
+          <li><a href="../../../Html/ejer03Formularios/index.html">Formularios</a></li>
+          <li><a href="../../../Html/ejer04Iframe/index.html">Iframes</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="../../index.html">CSS</a>
+        <ul>
+          <li><a href="../../cssParte1/css01StyleEnHeader/index.html">Style en el header</a></li>
+          <li><a href="../../cssParte1/css02SelectoresDeClase/index.html">Selectores de clase</a></li>
+          <li><a href="../../cssParte1/css03StyleEnFile/index.html">Style en archivo</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Menú desplegable con listas anidadas</h1>
+    <p>Pasá el mouse sobre "HTML" o "CSS" para ver el submenú. Los enlaces apuntan a
+    ejercicios reales del proyecto.</p>
+    <p><a href="../../index.html">Volver al índice de Css</a></p>
+  </main>
+
+</body>
+</html>

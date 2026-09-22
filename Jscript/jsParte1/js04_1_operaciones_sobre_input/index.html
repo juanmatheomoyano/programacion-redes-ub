@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS07 - Operaciones sobre un input</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 7: operaciones sobre un input</h1>
+  <p>Escribí un número en el campo y presioná el botón de la operación que querés aplicar.</p>
+
+  <input type="text" id="numero">
+  <button onclick="mostrarValor()">Mostrar valor</button>
+  <button onclick="sumarUno()">Sumar 1</button>
+  <button onclick="elevarAlCuadrado()">x²</button>
+  <button onclick="duplicar()">x × 2</button>
+  <button onclick="potenciaDeDos()">2^x</button>
+
+  <script>
+    /* Cada función lee el valor del input, lo transforma y escribe el resultado de vuelta en el input.
+       Así se pueden encadenar operaciones sobre el mismo valor. */
+
+    function mostrarValor() {
+      let n = parseFloat(document.getElementById("numero").value);
+      document.getElementById("numero").value = n;
+    }
+
+    function sumarUno() {
+      let n = parseFloat(document.getElementById("numero").value);
+      document.getElementById("numero").value = n + 1;
+    }
+
+    function elevarAlCuadrado() {
+      let n = parseFloat(document.getElementById("numero").value);
+      document.getElementById("numero").value = n ** 2;
+    }
+
+    function duplicar() {
+      let n = parseFloat(document.getElementById("numero").value);
+      document.getElementById("numero").value = n * 2;
+    }
+
+    function potenciaDeDos() {
+      let n = parseFloat(document.getElementById("numero").value);
+      document.getElementById("numero").value = 2 ** n;
+    }
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

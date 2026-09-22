@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cajas en fila con sombras</title>
+<style>
+
+  body {
+    background-color: steelblue;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    text-align: center;
+    font-family: cursive, sans-serif;
+    color: white;
+    /* text-shadow: desplazamiento-x, desplazamiento-y, difuminado, color */
+    text-shadow: 0 0 8px gold, 0 0 16px gold, 0 0 24px orange;
+  }
+
+  /* Contenedor flex: distribuye las cajas en fila y las envuelve si no entran */
+  .fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .caja {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px;
+    /* box-shadow: despl-x, despl-y, difuminado, color */
+    box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    overflow-y: auto;
+  }
+
+  #caja1 { background: linear-gradient(deepskyblue, navy); }
+  #caja2 { background: linear-gradient(gold, white); color: black; }
+
+  /* Cajas con imagen de fondo */
+  #caja3, #caja4 {
+    background-size: cover;
+    background-position: center;
+  }
+
+  #caja3 { background-image: url('./monte-fuji-sakura.jpg'); }
+
+  #caja4 {
+    background-image:
+      radial-gradient(circle, rgba(0,191,255,0.5), transparent 70%),
+      url('./castillo.jpg');
+  }
+
+  #caja5 { background: linear-gradient(gold, white); color: black; }
+
+</style>
+</head>
+<body>
+
+  <h1>Divs en fila</h1>
+
+  <div class="fila">
+    <div id="caja1" class="caja">Texto en caja 1. Texto adicional para demostrar el scroll interno con overflow-y:auto.</div>
+    <div id="caja2" class="caja">Texto en caja 2</div>
+    <div id="caja3" class="caja"></div>
+    <div id="caja4" class="caja"></div>
+    <div id="caja5" class="caja">Texto en caja 5</div>
+  </div>
+
+  <p style="text-align:center;padding-top:20px;">
+    <a href="../../index.html" style="color:white;">Volver al índice de Css</a>
+  </p>
+
+</body>
+</html>

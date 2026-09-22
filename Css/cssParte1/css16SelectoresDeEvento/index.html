@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pseudoclases: pestañas y galería</title>
+<style>
+
+  /* Barra de pestañas: lista horizontal sin viñetas */
+  .barraTabs {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+
+  .barraTabs li {
+    margin-right: 4px;
+  }
+
+  .barraTabs a {
+    display: block;
+    padding: 10px 20px;
+    background-color: #cccccc;
+    color: darkblue;
+    text-decoration: none;
+  }
+
+  /* :hover cambia el estilo cuando el mouse está sobre el elemento */
+  .barraTabs a:hover {
+    background-color: darkblue;
+    color: white;
+  }
+
+  /* :active se activa en el instante del clic */
+  .barraTabs a:active {
+    background-color: darkred;
+    color: white;
+  }
+
+  /* Clase que marca visualmente la pestaña activa */
+  .tabActiva {
+    background-color: darkblue !important;
+    color: white !important;
+  }
+
+  input {
+    display: block;
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  /* Miniaturas al 15% del contenedor */
+  .miniatura {
+    width: 15%;
+    transition: width 0.3s ease; /* animación suave al expandirse */
+    margin: 5px;
+    border: solid 2px darkblue;
+  }
+
+  /* :target se activa cuando el id del elemento coincide con el fragmento de la URL (#id) */
+  .miniatura:target {
+    width: 30%;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>Selectores de evento (pseudoclases)</h1>
+
+  <ul class="barraTabs">
+    <li><a class="tabActiva" href="./index.html">Opción 1</a></li>
+    <li><a href="./respuesta2.html">Opción 2</a></li>
+    <li><a href="./respuesta3.html">Opción 3</a></li>
+  </ul>
+
+  <form>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre">
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido">
+  </form>
+
+  <h2>Expandir imagen al 30% con un clic (pseudoclase :target)</h2>
+  <p>
+    <a href="#imgFuji">Ver Fuji</a> |
+    <a href="#imgTigre">Ver Tigre</a> |
+    <a href="#imgMontana">Ver Montaña</a> |
+    <a href="#imgFlores">Ver Flores</a>
+  </p>
+  <img id="imgFuji"    class="miniatura" src="./fuji.jpg"    alt="Monte Fuji">
+  <img id="imgTigre"   class="miniatura" src="./tigre.jpg"   alt="Tigre">
+  <img id="imgMontana" class="miniatura" src="./montana.jpg" alt="Montaña">
+  <img id="imgFlores"  class="miniatura" src="./flores.jpg"  alt="Flores">
+
+  <p><a href="../../index.html">Volver al índice de Css</a></p>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tamaño de fuente responsivo con @media</title>
+<style>
+
+  /* Tamaño base para pantallas angostas (menos de 800px) */
+  body {
+    font-size: 12px;
+  }
+
+  /* h1 siempre será el doble del tamaño base definido en body */
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  /* Pantallas medianas: entre 800px y 1080px de ancho */
+  @media (min-width: 800px) and (max-width: 1080px) {
+    body {
+      font-size: 24px;
+    }
+  }
+
+  /* Pantallas anchas: más de 1080px */
+  @media (min-width: 1080px) {
+    body {
+      font-size: 36px;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>Tamaño de fuente dependiente del ancho del viewport</h1>
+
+  <p>El h1 siempre mide el doble que los párrafos porque ambos están expresados en unidades em,
+  relativas al tamaño definido para el body.</p>
+
+  <p>La regla @media cambia el font-size del body según el ancho de la ventana:</p>
+  <ul>
+    <li>Menos de 800px: 12px (1em).</li>
+    <li>Entre 800px y 1080px: 24px (2em).</li>
+    <li>Más de 1080px: 36px (3em).</li>
+  </ul>
+
+  <p>Redimensioná la ventana del navegador para ver cómo cambia el tamaño del texto
+  al cruzar cada punto de quiebre (breakpoint).</p>
+
+  <p><a href="../../index.html">Volver al índice de Css</a></p>
+
+</body>
+</html>

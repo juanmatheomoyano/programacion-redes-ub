@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS10 - Convertir a mayúsculas</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 10: convertir a mayúsculas</h1>
+  <p>Al salir de cada campo (evento focusout) el texto se convierte automáticamente a mayúsculas.</p>
+
+  <p>Nombre: <input type="text" id="nombre"></p>
+  <p>Apellido: <input type="text" id="apellido"></p>
+
+  <script>
+    /* addEventListener escucha el evento "focusout" (el usuario abandona el campo).
+       this.value dentro del handler apunta al elemento que disparó el evento. */
+    document.getElementById("nombre").addEventListener("focusout", function() {
+      this.value = this.value.toUpperCase();
+    });
+
+    document.getElementById("apellido").addEventListener("focusout", function() {
+      this.value = this.value.toUpperCase();
+    });
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

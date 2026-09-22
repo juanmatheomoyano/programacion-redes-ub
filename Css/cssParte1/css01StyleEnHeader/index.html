@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Estilos en el header</title>
+<style>
+
+  /* Estilo aplicado a todos los h1 del documento */
+  h1 {
+    font-size: 2em;
+    color: darkgreen;
+    text-align: center;
+    background-color: lightyellow;
+  }
+
+  /* Estilo aplicado a todos los p del documento */
+  p {
+    text-align: left;
+    font-size: 1em;
+    color: darkslategray;
+    font-style: italic;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: darkslategray;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>Declaraciones de estilo dentro de la etiqueta &lt;style&gt; en el &lt;head&gt;</h1>
+
+  <p>El h1 ocupa todo el ancho del contenedor padre porque su display es de tipo bloque.
+  Por eso el fondo amarillo claro se extiende de extremo a extremo aunque el texto esté centrado.</p>
+
+  <p>Este párrafo toma el estilo definido para toda etiqueta p del documento: texto gris oscuro,
+  en cursiva y con un borde superior e inferior finos y sólidos. Las declaraciones están escritas
+  dentro de la etiqueta &lt;style&gt;&lt;/style&gt; en el head, sin usar el atributo style="" en cada etiqueta.</p>
+
+  <h1>Segundo título de nivel 1</h1>
+
+  <p>Este párrafo verifica que el estilo en cascada se aplica a todas las etiquetas p y h1
+  del documento sin necesidad de repetir declaraciones.</p>
+
+  <p><a href="../../index.html">Volver al índice de Css</a></p>
+
+</body>
+</html>

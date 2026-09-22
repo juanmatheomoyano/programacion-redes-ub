@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS05 - Alcance</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <script>
+    /* Variable global: declarada fuera de toda función, accesible desde cualquier parte */
+    var variableGlobal;
+    alert("variableGlobal fue declarada pero no asignada:\n var variableGlobal;");
+    alert("El tipo de variableGlobal es: " + typeof variableGlobal);
+  </script>
+
+  <h1>Alcance de variables: global vs. local</h1>
+
+  <button onclick="asignacionConDeclaracion()">Asignación con declaración (var dentro de función)</button>
+  <button onclick="asignacionSinDeclaracion()">Asignación sin declaración (modifica la global)</button>
+  <button onclick="muestraGlobal()">Mostrar variable global</button>
+
+  <script>
+    /* Declarar 'var variableGlobal' dentro de la función crea una variable LOCAL con el mismo nombre.
+       Esa variable local tapa a la global: no la modifica. */
+    function asignacionConDeclaracion() {
+      var variableGlobal = prompt("Ingrese un valor:");
+      alert("Se creó una variable LOCAL. Tipo: " + typeof variableGlobal);
+    }
+
+    /* Sin 'var', la asignación no crea variable local: modifica directamente la global. */
+    function asignacionSinDeclaracion() {
+      variableGlobal = prompt("Ingrese un valor para la variable global:");
+      alert("Variable global modificada. Valor: " + variableGlobal);
+    }
+
+    function muestraGlobal() {
+      alert("Tipo de variableGlobal: " + typeof variableGlobal + "\nValor: " + variableGlobal);
+    }
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tabla responsiva con atributos personalizados</title>
+<style>
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .franja {
+    background-color: #2e6b8a;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 12px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead {
+    background-color: #e07b6e;
+    font-variant: small-caps;
+  }
+
+  thead th {
+    padding: 8px;
+  }
+
+  tbody {
+    background-color: #1a6b62;
+    color: white;
+  }
+
+  tbody td {
+    padding: 8px;
+  }
+
+  /* :nth-child(odd) aplica estilo a las filas impares (1, 3, 5...) */
+  tbody tr:nth-child(odd) {
+    background: rgba(0,0,0,0.2);
+  }
+
+  /* Selector de atributo genérico: agrupa celdas de la misma columna sin importar la fila */
+  [col-dato='Id'] {
+    width: 5%;
+  }
+
+  /* En pantallas angostas se oculta la columna Skype para mejorar la legibilidad */
+  @media (max-width: 700px) {
+    [col-dato='Skype'] {
+      display: none;
+    }
+  }
+
+  .piePagina {
+    background-color: #cccccc;
+    text-align: center;
+    padding: 8px;
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="franja">Tabla responsiva (RWD)</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th col-dato="Id">Id</th>
+        <th col-dato="Nick">Nick</th>
+        <th col-dato="Mail">Mail</th>
+        <th col-dato="Web">Web</th>
+        <th col-dato="Twitter">Twitter</th>
+        <th col-dato="Skype">Skype</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td col-dato="Id">1</td><td col-dato="Nick">Fula</td>
+        <td col-dato="Mail">fulano@gmail.com</td>
+        <td col-dato="Web"><a href="http://fulano.ar">fulano.ar</a></td>
+        <td col-dato="Twitter">@fulano</td><td col-dato="Skype">fulano@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">2</td><td col-dato="Nick">Menga</td>
+        <td col-dato="Mail">mengano@mail.com</td>
+        <td col-dato="Web"><a href="http://mengano.com">mengano.com</a></td>
+        <td col-dato="Twitter">@mengano</td><td col-dato="Skype">mengano@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">3</td><td col-dato="Nick">Zulti</td>
+        <td col-dato="Mail">zultano@gmail.com</td>
+        <td col-dato="Web"><a href="http://zutano.org">zutano.org</a></td>
+        <td col-dato="Twitter">@zultano</td><td col-dato="Skype">zultano@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">4</td><td col-dato="Nick">Luis</td>
+        <td col-dato="Mail">luis@mail.ar</td>
+        <td col-dato="Web"><a href="http://luis.music">luis.music</a></td>
+        <td col-dato="Twitter">@luis</td><td col-dato="Skype">luis@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">5</td><td col-dato="Nick">Pepe</td>
+        <td col-dato="Mail">jose@gmail.com</td>
+        <td col-dato="Web"><a href="http://jose.com.ar">jose.com.ar</a></td>
+        <td col-dato="Twitter">@jose</td><td col-dato="Skype">jose@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">6</td><td col-dato="Nick">Gato</td>
+        <td col-dato="Mail">eduardo@mail.com</td>
+        <td col-dato="Web"><a href="http://gato.com">gato.com</a></td>
+        <td col-dato="Twitter">@gato</td><td col-dato="Skype">eduardo@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">7</td><td col-dato="Nick">Dulce</td>
+        <td col-dato="Mail">lilia@mail.com</td>
+        <td col-dato="Web"><a href="http://lili.ar">lili.ar</a></td>
+        <td col-dato="Twitter">@lili</td><td col-dato="Skype">lilia@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">8</td><td col-dato="Nick">Fula</td>
+        <td col-dato="Mail">fulano@gmail.com</td>
+        <td col-dato="Web"><a href="http://fulano.ar">fulano.ar</a></td>
+        <td col-dato="Twitter">@fulano</td><td col-dato="Skype">fulano@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">9</td><td col-dato="Nick">Menga</td>
+        <td col-dato="Mail">mengano@mail.com</td>
+        <td col-dato="Web"><a href="http://mengano.com">mengano.com</a></td>
+        <td col-dato="Twitter">@mengano</td><td col-dato="Skype">mengano@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">10</td><td col-dato="Nick">Zulti</td>
+        <td col-dato="Mail">zultano@gmail.com</td>
+        <td col-dato="Web"><a href="http://zutano.org">zutano.org</a></td>
+        <td col-dato="Twitter">@zultano</td><td col-dato="Skype">zultano@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">11</td><td col-dato="Nick">Luis</td>
+        <td col-dato="Mail">luis@mail.ar</td>
+        <td col-dato="Web"><a href="http://luis.music">luis.music</a></td>
+        <td col-dato="Twitter">@luis</td><td col-dato="Skype">luis@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">12</td><td col-dato="Nick">Pepe</td>
+        <td col-dato="Mail">jose@gmail.com</td>
+        <td col-dato="Web"><a href="http://jose.com.ar">jose.com.ar</a></td>
+        <td col-dato="Twitter">@jose</td><td col-dato="Skype">jose@gmail.com</td>
+      </tr>
+      <tr>
+        <td col-dato="Id">13</td><td col-dato="Nick">Gato</td>
+        <td col-dato="Mail">eduardo@mail.com</td>
+        <td col-dato="Web"><a href="http://gato.com">gato.com</a></td>
+        <td col-dato="Twitter">@gato</td><td col-dato="Skype">eduardo@gmail.com</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="piePagina">Pie</div>
+
+  <p style="text-align:center;padding:12px;">
+    <a href="../../index.html">Volver al índice de Css</a>
+  </p>
+
+</body>
+</html>

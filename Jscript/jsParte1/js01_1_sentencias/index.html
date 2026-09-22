@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS01 - Sentencias</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:40px;">
+
+  <h1>Ejercicio 1: sentencias</h1>
+
+  <p>Línea 1: escrita directamente en HTML.</p>
+
+  <script>
+    /* El navegador lee el documento de arriba hacia abajo y ejecuta cada sentencia en orden */
+    document.write("<p>Línea 2: escrita con document.write() desde JavaScript.</p>");
+    alert("Alerta 3: el navegador se detiene aquí hasta que se acepte.");
+  </script>
+
+  <p>Línea 4: escrita en HTML, aparece después de aceptar la alerta 3.</p>
+
+  <script>
+    document.write("<p>Línea 5: escrita con document.write(), después de la alerta 3.</p>");
+    alert("Alerta 6");
+  </script>
+
+  <p>Línea 7: escrita en HTML, después de la alerta 6.</p>
+
+  <script>
+    document.write("<p>Línea 8: escrita con document.write(), después de la alerta 6.</p>");
+  </script>
+
+  <p>
+    El navegador ejecuta cada sentencia en el orden en que aparece.
+    Una alerta pausa la carga hasta que el usuario la acepta.
+    document.write() solo funciona mientras el flujo de escritura del documento está abierto.
+  </p>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

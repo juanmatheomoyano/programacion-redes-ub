@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Encolumnado sin tablas</title>
+<style>
+
+  body {
+    background-color: lightyellow;
+  }
+
+  /* column-count distribuye los elementos hijos en 3 columnas automáticamente */
+  .contenedorColumnas {
+    column-count: 3;
+    column-gap: 20px;
+  }
+
+  .tarjeta {
+    background-color: lightsteelblue;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    /* break-inside:avoid evita que una tarjeta quede cortada entre dos columnas */
+    break-inside: avoid;
+  }
+
+  /* max-width:100% limita la imagen al ancho de su columna sin importar el tamaño real */
+  .tarjeta img {
+    max-width: 100%;
+    display: block;
+    margin-top: 10px;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1 style="text-align:center;">Encolumnado sin tablas (column-count)</h1>
+
+  <div class="contenedorColumnas">
+
+    <div class="tarjeta">
+      <h2>Nota 1</h2>
+      <p>Contenido de la primera tarjeta. La imagen siguiente se limita automáticamente
+      al ancho de la columna gracias a max-width:100%.</p>
+      <img src="./paisaje.jpg" alt="Paisaje">
+    </div>
+
+    <div class="tarjeta"><h2>Nota 2</h2><p>Contenido de la tarjeta 2: lorem ipsum dolor sit amet.</p></div>
+    <div class="tarjeta"><h2>Nota 3</h2><p>Contenido de la tarjeta 3: lorem ipsum dolor sit amet.</p></div>
+    <div class="tarjeta"><h2>Nota 4</h2><p>Contenido de la tarjeta 4: lorem ipsum dolor sit amet.</p></div>
+    <div class="tarjeta"><h2>Nota 5</h2><p>Contenido de la tarjeta 5: lorem ipsum dolor sit amet.</p></div>
+    <div class="tarjeta"><h2>Nota 6</h2><p>Contenido de la tarjeta 6: lorem ipsum dolor sit amet.</p></div>
+    <div class="tarjeta"><h2>Nota 7</h2><p>Contenido de la tarjeta 7: lorem ipsum dolor sit amet.</p></div>
+    <div class="tarjeta"><h2>Nota 8</h2><p>Contenido de la tarjeta 8: lorem ipsum dolor sit amet.</p></div>
+
+  </div>
+
+  <p style="text-align:center;"><a href="../../index.html">Volver al índice de Css</a></p>
+
+</body>
+</html>

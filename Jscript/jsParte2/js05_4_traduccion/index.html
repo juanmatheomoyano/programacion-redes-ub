@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS14 - Traducción</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <!-- El h1 tiene un id para poder modificar su innerHTML y un cursor de puntero como pista visual -->
+  <h1 id="titulo" onclick="traducir()" style="cursor:pointer;">
+    Hacé click para <span style="font-size:0.6em;">traducir este texto</span>
+  </h1>
+
+  <p>(Hacé clic en el título para ver la traducción)</p>
+
+  <script>
+    let estaEnEspanol = true;
+
+    /* Cambia el innerHTML del título y alterna la variable de idioma con el operador ! */
+    function traducir() {
+      const titulo = document.getElementById("titulo");
+      if (estaEnEspanol) {
+        titulo.innerHTML = "Click to <span style='font-size:0.6em;'>translate this text</span>";
+      } else {
+        titulo.innerHTML = "Hacé click para <span style='font-size:0.6em;'>traducir este texto</span>";
+      }
+      estaEnEspanol = !estaEnEspanol;
+    }
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

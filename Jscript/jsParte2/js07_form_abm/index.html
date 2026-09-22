@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS17 - Formulario ABM</title>
+<style>
+  .abm { background-color: #d4edda; padding: 12px; max-width: 400px; }
+</style>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <div class="abm">
+    <h1>FORMULARIO ABM</h1>
+    <p>Nombre: <input type="text" id="nombre"></p>
+    <p>Apellido: <input type="text" id="apellido"></p>
+    <p>Email: <input type="text" id="email"></p>
+    <button onclick="limpiarCampos()">Limpiar</button>
+    <button onclick="alta()">Alta</button>
+    <button onclick="modificar()">Modificar</button>
+    <button onclick="baja()">Baja</button>
+  </div>
+
+  <div id="listado"></div>
+
+  <script>
+    /* El apellido se usa como clave de búsqueda para modificar y dar de baja */
+    let registros = [];
+
+    function limpiarCampos() {
+      document.getElementById("nombre").value = "";
+      document.getElementById("apellido").value = "";
+      document.getElementById("email").value = "";
+    }
+
+    /* Busca el índice en el array por apellido; devuelve -1 si no lo encuentra */
+    function buscarIndice(apellido) {
+      let indice = -1;
+      registros.forEach(function(item, i) {
+        if (item.apellido === apellido) { indice = i; }
+      });
+      return indice;
+    }
+
+    function alta() {
+      const nombre   = document.getElementById("nombre").value;
+      const apellido = document.getElementById("apellido").value;
+      const email    = document.getElementById("email").value;
+      if (nombre === "" || apellido === "") {
+        alert("Nombre y apellido son obligatorios.");
+        return;
+      }
+      if (buscarIndice(apellido) !== -1) {
+        alert("Ya existe un registro con ese apellido.");
+        return;
+      }
+      registros.push({ nombre, apellido, email });
+      limpiarCampos();
+      mostrarListado();
+    }
+
+    function modificar() {
+      const apellido = document.getElementById("apellido").value;
+      const indice = buscarIndice(apellido);
+      if (indice === -1) { alert("No se encontró un registro con ese apellido."); return; }
+      registros[indice].nombre = document.getElementById("nombre").value;
+      registros[indice].email  = document.getElementById("email").value;
+      limpiarCampos();
+      mostrarListado();
+    }
+
+    function baja() {
+      const apellido = document.getElementById("apellido").value;
+      const indice = buscarIndice(apellido);
+      if (indice === -1) { alert("No se encontró un registro con ese apellido."); return; }
+      /* splice elimina un elemento del array a partir del índice indicado */
+      registros.splice(indice, 1);
+      limpiarCampos();
+      mostrarListado();
+    }
+
+    function mostrarListado() {
+      let html = "<h3>Registros: " + registros.length + "</h3>";
+      registros.forEach(function(item) {
+        html += "<p>" + item.apellido + ", " + item.nombre + " — " + item.email + "</p>";
+      });
+      document.getElementById("listado").innerHTML = html;
+    }
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JS06 - Arreglos</title>
+</head>
+<body style="font-family:Arial, sans-serif; margin:20px;">
+
+  <h1>Ejercicio 6: array de índice numérico</h1>
+
+  <script>
+    /* Declaración e inicialización de un array con dos elementos */
+    let arregloPaises = [];
+    arregloPaises = ["Argentina", "Brasil"];
+
+    /* push() agrega un elemento al final del array */
+    arregloPaises.push(prompt("El array ya tiene dos elementos (Argentina y Brasil). Agregue el tercero:"));
+
+    document.write("<p>Tipo de arregloPaises: " + typeof arregloPaises + "</p>");
+    document.write("<p>Índice 0 (cargado por programa): " + arregloPaises[0] + "</p>");
+    document.write("<p>Índice 1 (cargado por programa): " + arregloPaises[1] + "</p>");
+    document.write("<p>Índice 2 (cargado por teclado): " + arregloPaises[2] + "</p>");
+    document.write("<p>Cantidad de elementos (length): " + arregloPaises.length + "</p>");
+  </script>
+
+  <p><a href="../../index.html">Volver al índice de Js</a></p>
+
+</body>
+</html>
