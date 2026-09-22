@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esp05 - Formulario de Alta</title>
+<style>
+  /* Reset y tipografía base */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f0f0f0; color: #222; height: 100vh; display: flex; flex-direction: column; }
+
+  /* Encabezado: 10% del alto */
+  header { background: #1b4332; color: white; padding: 14px 24px; flex: 0 0 10vh; display: flex; align-items: center; border-bottom: 3px solid #52b788; }
+  header h1 { font-size: 1em; }
+
+  /* Cuerpo: ocupa el espacio restante con scroll interno */
+  .cuerpo { flex: 1; overflow-y: auto; padding: 24px; display: flex; justify-content: center; }
+
+  /* Formulario centrado */
+  form { background: white; border: 1px solid #ccc; padding: 24px 28px; width: 100%; max-width: 600px; }
+  form h2 { font-size: 1em; color: #1b4332; border-bottom: 2px solid #52b788; padding-bottom: 6px; margin-bottom: 16px; }
+
+  /* Cada campo ocupa una fila completa */
+  .campo { margin-bottom: 14px; display: flex; flex-direction: column; }
+  .campo label { font-size: 0.85em; font-weight: bold; color: #2d6a4f; margin-bottom: 4px; }
+  .campo input, .campo select, .campo textarea {
+    padding: 8px 10px; border: 1px solid #ccc; font-size: 0.9em; width: 100%;
+  }
+  .campo textarea { resize: vertical; min-height: 60px; }
+
+  /* Pie con botón de envío */
+  .pie { background: #f4faf6; border-top: 1px solid #d8f3dc; padding: 14px 28px; display: flex; justify-content: flex-end; }
+  .pie button { background: #2d6a4f; color: white; border: none; padding: 10px 24px; font-size: 0.9em; cursor: pointer; }
+  .pie button:hover { background: #1b4332; }
+
+  /* Enlace al índice */
+  .volver { display: block; text-align: center; margin: 12px; font-size: 0.85em; color: #555; }
+  .volver a { color: #1b4332; text-decoration: none; }
+  .volver a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Esp05 — Formulario de Alta: Notas de Crédito de Ventas</h1>
+</header>
+
+<div class="cuerpo">
+  <form id="formAlta">
+    <h2>Nueva Nota de Crédito</h2>
+
+    <!-- Campos del formulario de alta -->
+    <div class="campo">
+      <label for="NroComprobante">Nro. Comprobante</label>
+      <input type="text" id="NroComprobante" placeholder="NC-0001-00000000">
+    </div>
+    <div class="campo">
+      <label for="NroDeFacturaImputada">Nro. Factura Imputada</label>
+      <input type="text" id="NroDeFacturaImputada" placeholder="FC-0001-00000000">
+    </div>
+    <div class="campo">
+      <label for="selectTipoComprobante">Tipo de Comprobante</label>
+      <!-- El select se llena dinámicamente desde el JSON con JS -->
+      <select id="selectTipoComprobante"></select>
+    </div>
+    <div class="campo">
+      <label for="CodCliente">Código de Cliente</label>
+      <input type="text" id="CodCliente" placeholder="CLI-0000">
+    </div>
+    <div class="campo">
+      <label for="Observaciones">Observaciones</label>
+      <textarea id="Observaciones" placeholder="Descripción del motivo..."></textarea>
+    </div>
+    <div class="campo">
+      <label for="fechaComprobante">Fecha del Comprobante</label>
+      <input type="date" id="fechaComprobante">
+    </div>
+    <div class="campo">
+      <label for="TotalNetoComprobante">Total Neto</label>
+      <input type="number" id="TotalNetoComprobante" step="0.01" placeholder="0.00">
+    </div>
+
+    <div class="pie">
+      <button type="submit">Guardar</button>
+    </div>
+  </form>
+</div>
+
+<p class="volver"><a href="../index.html">← Volver al índice de Especiales</a></p>
+
+<!-- Datos de tipos de comprobante -->
+<script src="../tiposComprobante.js"></script>
+<!-- jQuery -->
+<script src="../jquery.js"></script>
+<!-- Lógica del formulario -->
+<script src="ejercicio1.js"></script>
+
+</body>
+</html>

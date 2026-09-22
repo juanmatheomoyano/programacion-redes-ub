@@ -1,24 +1,142 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios Especiales</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
-        h1 { font-size: 1.4em; border-bottom: 2px solid #333; padding-bottom: 8px; }
-        ul { line-height: 2; padding-left: 20px; }
-        a { color: #0066cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .back { font-size: 0.9em; margin-bottom: 20px; display: block; }
-        .pendiente { color: #999; font-style: italic; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Especiales — Programación en Ambientes de Redes</title>
+<style>
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f0f0f0; color: #222; }
+
+  header { background: #1b4332; color: white; padding: 20px 40px; border-bottom: 4px solid #52b788; }
+  header h1 { font-size: 1.3em; margin-bottom: 4px; }
+  header .subtitulo { font-size: 0.85em; color: #95d5b2; }
+
+  nav { background: #2d6a4f; position: sticky; top: 0; z-index: 100; }
+  nav ul { list-style: none; display: flex; }
+  nav > ul > li { position: relative; }
+  nav > ul > li > a { display: block; padding: 13px 22px; color: white; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+  nav > ul > li:hover > a { background: #1b4332; }
+  .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 310px; max-height: 480px; overflow-y: auto; box-shadow: 0 6px 16px rgba(0,0,0,0.18); border-top: 3px solid #52b788; }
+  nav > ul > li:hover .dropdown { display: block; }
+  .dropdown .grupo { padding: 7px 14px 5px; font-size: 0.75em; font-weight: bold; text-transform: uppercase; color: #2d6a4f; background: #f4faf6; border-bottom: 1px solid #d8f3dc; letter-spacing: 0.05em; }
+  .dropdown li a { display: block; padding: 9px 18px; color: #333; text-decoration: none; font-size: 0.88em; border-bottom: 1px solid #f0f0f0; }
+  .dropdown li a:hover { background: #d8f3dc; color: #1b4332; padding-left: 24px; }
+
+  main { max-width: 820px; margin: 40px auto; padding: 0 24px 60px; }
+  main h2 { font-size: 1.1em; border-bottom: 2px solid #2d6a4f; padding-bottom: 6px; margin-bottom: 16px; color: #1b4332; margin-top: 28px; }
+  .indice { background: white; border: 1px solid #ccc; padding: 20px 24px; margin-bottom: 20px; }
+  .indice ol { padding-left: 20px; line-height: 2.4; }
+  .indice a { color: #1b4332; text-decoration: none; font-size: 0.95em; }
+  .indice a:hover { text-decoration: underline; }
+  .volver { font-size: 0.88em; color: #555; margin-bottom: 24px; display: inline-block; }
+
+  footer { background: #1b4332; color: #95d5b2; text-align: center; padding: 14px; font-size: 0.82em; }
+
+</style>
 </head>
 <body>
-    <a class="back" href="../index.html">← Volver al índice principal</a>
-    <h1>Índice de ejercicios Especiales (JSON)</h1>
-    <ul>
-        <li class="pendiente">Ejercicios próximamente...</li>
-    </ul>
+
+<header>
+  <h1>Especiales — Ejercicios</h1>
+  <p class="subtitulo">Programación en Ambientes de Redes · Juan Moyano</p>
+</header>
+
+<nav>
+  <ul>
+    <li>
+      <a href="../Html/index.html">HTML ▾</a>
+      <ul class="dropdown">
+        <li class="grupo">Ejercicios</li>
+        <li><a href="../Html/ejer01PreguntasHTTP/index.html">01 — Preguntas sobre HTTP</a></li>
+        <li><a href="../Html/ejer02Tablas/index.html">02 — Tablas con rowspan y colspan</a></li>
+        <li><a href="../Html/ejer03Formularios/index.html">03 — Formulario con validación HTML5</a></li>
+        <li><a href="../Html/ejer04Iframe/index.html">04 — Iframes, PDF y video</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="../Css/index.html">CSS ▾</a>
+      <ul class="dropdown">
+        <li class="grupo">Parte 1</li>
+        <li><a href="../Css/cssParte1/css01StyleEnHeader/index.html">01 — Estilos en el header</a></li>
+        <li><a href="../Css/cssParte1/css02SelectoresDeClase/index.html">02 — Selectores de clase y de id</a></li>
+        <li><a href="../Css/cssParte1/css03StyleEnFile/index.html">03 — Hoja de estilos externa</a></li>
+        <li><a href="../Css/cssParte1/css04FontSize/index.html">04 — Font-size responsivo</a></li>
+        <li><a href="../Css/cssParte1/css07BackgroundFijo/index.html">07 — Background fixed</a></li>
+        <li><a href="../Css/cssParte1/css08CentradoYPadding/index.html">08 — Centrado y padding</a></li>
+        <li><a href="../Css/cssParte1/css10DivsEnPila/index.html">10 — Cajas apiladas</a></li>
+        <li><a href="../Css/cssParte1/css11DivsEnFila/index.html">11 — Cajas en fila</a></li>
+        <li><a href="../Css/cssParte1/css14DivsInternosEnColumnas/index.html">14 — Columnas</a></li>
+        <li><a href="../Css/cssParte1/css16SelectoresDeEvento/index.html">16 — Pseudoclases</a></li>
+        <li class="grupo">Parte 2</li>
+        <li><a href="../Css/cssParte2/css20DivsInternosRelativos/index.html">20 — Relativo y modal</a></li>
+        <li><a href="../Css/cssParte2/css21DivsInternosAbsolutos/index.html">21 — Absoluto y transform</a></li>
+        <li><a href="../Css/cssParte2/css22CentradoVerticalCajaFlex/index.html">22 — Flexbox</a></li>
+        <li><a href="../Css/cssParte2/css25Menu/index.html">25 — Menú</a></li>
+        <li><a href="../Css/cssParte2/css27FormsRWD/index.html">27 — Forms RWD</a></li>
+        <li><a href="../Css/cssParte2/css29TablasRWD/index.html">29 — Tablas RWD</a></li>
+        <li><a href="../Css/cssParte2/css30LayoutBasico/index.html">30 — Layout</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="../Jscript/index.html">JavaScript ▾</a>
+      <ul class="dropdown">
+        <li class="grupo">Parte 1</li>
+        <li><a href="../Jscript/jsParte1/js01_1_sentencias/index.html">01.1 — Sentencias</a></li>
+        <li><a href="../Jscript/jsParte1/js01_2_debugger/index.html">01.2 — Debugger</a></li>
+        <li><a href="../Jscript/jsParte1/js02_comando_en_evento/index.html">02 — Comando en evento</a></li>
+        <li><a href="../Jscript/jsParte1/js03_1_variablesSimples/index.html">03.1 — Variables simples</a></li>
+        <li><a href="../Jscript/jsParte1/js03_5_alcance/index.html">03.5 — Alcance</a></li>
+        <li><a href="../Jscript/jsParte1/js03_6_arreglos/index.html">03.6 — Arreglos</a></li>
+        <li><a href="../Jscript/jsParte1/js04_1_operaciones_sobre_input/index.html">04.1 — Operaciones sobre input</a></li>
+        <li><a href="../Jscript/jsParte1/js04_2_operaciones_entre_inputs/index.html">04.2 — Operaciones entre inputs</a></li>
+        <li><a href="../Jscript/jsParte1/js04_3_funcionesCompartidas/index.html">04.3 — Funciones compartidas</a></li>
+        <li><a href="../Jscript/jsParte1/js04_4_convertir_a_mayusculas/index.html">04.4 — Mayúsculas</a></li>
+        <li><a href="../Jscript/jsParte1/js04_5_funcionFlecha/index.html">04.5 — Función flecha</a></li>
+        <li><a href="../Jscript/jsParte1/js05_1_location/index.html">05.1 — Location</a></li>
+        <li><a href="../Jscript/jsParte1/js05_3_form_confirmacion/index.html">05.3 — Confirm()</a></li>
+        <li class="grupo">Parte 2</li>
+        <li><a href="../Jscript/jsParte2/js05_4_traduccion/index.html">05.4 — Traducción</a></li>
+        <li><a href="../Jscript/jsParte2/js05_6_variables_objeto_dato/index.html">05.6 — Objeto de dato</a></li>
+        <li><a href="../Jscript/jsParte2/js06_validacionConKeyUp/index.html">06 — Keyup</a></li>
+        <li><a href="../Jscript/jsParte2/js07_form_abm/index.html">07 — ABM</a></li>
+        <li><a href="../Jscript/jsParte2/js09_creacion_objetos/index.html">09 — Creación dinámica</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="../Especiales/index.html">Especiales ▾</a>
+      <ul class="dropdown">
+        <li class="grupo">Ejercicios</li>
+        <li><a href="./esp05FormVariableArregloDeObjetos/index.html">esp05 — Formulario y select desde JSON</a></li>
+        <li><a href="./esp10TablaVariableArregloDeObjetos/index.html">esp10 — Tabla dinámica desde JSON</a></li>
+        <li><a href="./esp15VentanaModal/index.html">esp15 — Ventana modal</a></li>
+        <li><a href="./esp20TablaFormulario/index.html">esp20 — Tabla y formulario integrados</a></li>
+      </ul>
+    </li>
+    <li><a href="../Php/index.html">PHP</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <a class="volver" href="../index.html">← Volver al índice principal</a>
+
+  <h2>Especiales — JSON y jQuery</h2>
+  <div class="indice">
+    <ol>
+      <li><a href="./esp05FormVariableArregloDeObjetos/index.html">Formulario de alta con select cargado desde variable JSON</a></li>
+      <li><a href="./esp10TablaVariableArregloDeObjetos/index.html">Tabla dinámica generada desde variable JSON con jQuery</a></li>
+      <li><a href="./esp15VentanaModal/index.html">Ventana modal con control de opacidad e interactividad del fondo</a></li>
+      <li><a href="./esp20TablaFormulario/index.html">Sistema integrado: tabla con datos JSON y formulario en modal</a></li>
+    </ol>
+  </div>
+
+</main>
+
+<footer>
+  Programación en Ambientes de Redes · Universidad de Belgrano
+</footer>
+
 </body>
 </html>

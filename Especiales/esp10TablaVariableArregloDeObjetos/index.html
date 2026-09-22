@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esp10 - Tabla de Notas de Crédito</title>
+<style>
+  /* Reset y layout general sin scrollbar inicial */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; font-family: Arial, sans-serif; background: #f0f0f0; color: #222; }
+
+  /* Contenedor principal ocupa exactamente el viewport */
+  .pantalla { display: flex; flex-direction: column; height: 100vh; }
+
+  /* Encabezado con botones */
+  header { background: #1b4332; color: white; padding: 12px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 3px solid #52b788; flex-shrink: 0; }
+  header h1 { font-size: 0.95em; flex: 1; }
+  header button { background: #52b788; color: #1b4332; border: none; padding: 8px 16px; font-weight: bold; font-size: 0.85em; cursor: pointer; }
+  header button:hover { background: #95d5b2; }
+
+  /* Sección de la tabla ocupa el resto */
+  .zona-tabla { flex: 1; overflow: hidden; padding: 16px; display: flex; flex-direction: column; }
+
+  /* Tabla con thead y tfoot fijos, tbody con scroll */
+  table { width: 100%; border-collapse: collapse; display: flex; flex-direction: column; height: 100%; }
+  thead, tfoot { flex-shrink: 0; display: table; width: 100%; table-layout: fixed; background: #2d6a4f; color: white; }
+  tfoot { background: #f4faf6; color: #555; font-size: 0.8em; }
+  tbody { flex: 1; overflow-y: auto; display: block; width: 100%; }
+  tbody tr { display: table; width: 100%; table-layout: fixed; }
+
+  th, td { padding: 8px 10px; font-size: 0.82em; border-bottom: 1px solid #d8f3dc; text-align: left; }
+  thead th { border-bottom: 2px solid #52b788; }
+  tbody tr:nth-child(even) { background: #f4faf6; }
+  tbody tr:hover { background: #d8f3dc; }
+
+  /* Enlace volver */
+  .volver { text-align: center; padding: 8px; font-size: 0.82em; flex-shrink: 0; }
+  .volver a { color: #1b4332; text-decoration: none; }
+  .volver a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="pantalla">
+
+  <header>
+    <h1>Esp10 — Tabla: Encabezados de Notas de Crédito</h1>
+    <button id="btCargarDatos">Cargar Datos</button>
+    <button id="btVaciarDatos">Vaciar Datos</button>
+  </header>
+
+  <div class="zona-tabla">
+    <table>
+      <thead>
+        <tr>
+          <th>Nro. Comprobante</th>
+          <th>Factura Imputada</th>
+          <th>Tipo</th>
+          <th>Cód. Cliente</th>
+          <th>Observaciones</th>
+          <th>Fecha</th>
+          <th>Total Neto</th>
+        </tr>
+      </thead>
+      <!-- Las filas se insertan aquí dinámicamente -->
+      <tbody id="tbDatos"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="7">Datos cargados desde variable JSON en notasCredito.js</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <p class="volver"><a href="../index.html">← Volver al índice de Especiales</a></p>
+
+</div>
+
+<!-- Datos de notas de crédito -->
+<script src="../notasCredito.js"></script>
+<!-- jQuery -->
+<script src="../jquery.js"></script>
+<!-- Lógica de la tabla -->
+<script src="ejercicio2.js"></script>
+
+</body>
+</html>

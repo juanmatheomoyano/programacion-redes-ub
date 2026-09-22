@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esp15 - Ventana Modal</title>
+<style>
+  /* Reset y base */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; font-family: Arial, sans-serif; background: #f0f0f0; color: #222; }
+
+  /* Clases de estado del modal: oculto o visible */
+  div.ventanaModalApagado { visibility: hidden; }
+  div.ventanaModalPrendido { visibility: visible; }
+
+  /* Clases de estado del contenedor de fondo */
+  div.contenedorActivo { opacity: 1; pointer-events: auto; }
+  div.contenedorPasivo { opacity: 0.3; pointer-events: none; }
+
+  /* Contenedor de fondo */
+  #contenedorFondo {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header { background: #1b4332; color: white; padding: 14px 24px; border-bottom: 3px solid #52b788; display: flex; align-items: center; gap: 14px; }
+  header h1 { font-size: 1em; flex: 1; }
+  header button { background: #52b788; color: #1b4332; border: none; padding: 8px 16px; font-weight: bold; cursor: pointer; }
+  header button:hover { background: #95d5b2; }
+
+  .contenido { flex: 1; padding: 24px; }
+  .contenido p { line-height: 1.7; color: #444; max-width: 600px; }
+
+  /* Capa de la ventana modal superpuesta */
+  #ventanaModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid #2d6a4f;
+    padding: 28px 32px;
+    min-width: 340px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    z-index: 200;
+  }
+
+  #ventanaModal h2 { font-size: 1em; color: #1b4332; margin-bottom: 12px; border-bottom: 2px solid #52b788; padding-bottom: 6px; }
+  #ventanaModal p { font-size: 0.9em; color: #444; line-height: 1.6; margin-bottom: 16px; }
+
+  /* Botón cerrar dentro del modal */
+  #btnCerrar { background: #1b4332; color: white; border: none; padding: 8px 20px; cursor: pointer; font-size: 0.88em; }
+  #btnCerrar:hover { background: #2d6a4f; }
+</style>
+</head>
+<body>
+
+<!-- Contenedor de fondo: inicia activo -->
+<div id="contenedorFondo" class="contenedorActivo">
+  <header>
+    <h1>Esp15 — Ventana Modal</h1>
+    <button id="btnAbrir">Abrir Modal</button>
+  </header>
+  <div class="contenido">
+    <p>Este ejercicio muestra cómo controlar una ventana modal con jQuery. Al abrir el modal, el fondo se opaca y pierde interactividad. Al cerrarlo, vuelve al estado normal.</p>
+  </div>
+  <p style="text-align:center; padding:12px; font-size:0.82em;"><a href="../index.html" style="color:#1b4332; text-decoration:none;">← Volver al índice de Especiales</a></p>
+</div>
+
+<!-- Ventana modal: inicia apagada (invisible) -->
+<div id="ventanaModal" class="ventanaModalApagado">
+  <h2>Ventana Modal</h2>
+  <p>Este es el contenido del modal. El fondo quedó inactivo con <code>pointer-events: none</code> y opacidad reducida.</p>
+  <button id="btnCerrar">✕ Cerrar</button>
+</div>
+
+<!-- jQuery -->
+<script src="../jquery.js"></script>
+<!-- Lógica del modal -->
+<script src="ejercicio3.js"></script>
+
+</body>
+</html>

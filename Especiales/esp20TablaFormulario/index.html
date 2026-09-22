@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esp20 - Tabla y Formulario</title>
+<style>
+  /* Reset y base */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; font-family: Arial, sans-serif; background: #f0f0f0; color: #222; overflow: hidden; }
+
+  /* Clases de estado del modal */
+  div.ventanaModalApagado { visibility: hidden; }
+  div.ventanaModalPrendido { visibility: visible; }
+  div.contenedorActivo { opacity: 1; pointer-events: auto; }
+  div.contenedorPasivo { opacity: 0.3; pointer-events: none; }
+
+  /* Contenedor de fondo con tabla */
+  #contenedorFondo { display: flex; flex-direction: column; height: 100vh; }
+
+  header { background: #1b4332; color: white; padding: 11px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 3px solid #52b788; flex-shrink: 0; }
+  header h1 { font-size: 0.9em; flex: 1; }
+  header button { background: #52b788; color: #1b4332; border: none; padding: 7px 14px; font-weight: bold; font-size: 0.82em; cursor: pointer; }
+  header button:hover { background: #95d5b2; }
+
+  .zona-tabla { flex: 1; overflow: hidden; padding: 14px; display: flex; flex-direction: column; }
+
+  /* Tabla con scroll interno en tbody */
+  table { width: 100%; border-collapse: collapse; display: flex; flex-direction: column; height: 100%; }
+  thead, tfoot { flex-shrink: 0; display: table; width: 100%; table-layout: fixed; background: #2d6a4f; color: white; }
+  tfoot { background: #f4faf6; color: #555; font-size: 0.78em; }
+  tbody { flex: 1; overflow-y: auto; display: block; width: 100%; }
+  tbody tr { display: table; width: 100%; table-layout: fixed; }
+
+  th, td { padding: 7px 9px; font-size: 0.8em; border-bottom: 1px solid #d8f3dc; text-align: left; }
+  thead th { border-bottom: 2px solid #52b788; }
+  tbody tr:nth-child(even) { background: #f4faf6; }
+  tbody tr:hover { background: #d8f3dc; }
+
+  .volver { text-align: center; padding: 7px; font-size: 0.8em; flex-shrink: 0; }
+  .volver a { color: #1b4332; text-decoration: none; }
+
+  /* Modal con el formulario de alta */
+  #ventanaModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid #2d6a4f;
+    width: 90%;
+    max-width: 560px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    z-index: 200;
+    padding: 24px 28px;
+  }
+
+  #ventanaModal h2 { font-size: 1em; color: #1b4332; border-bottom: 2px solid #52b788; padding-bottom: 6px; margin-bottom: 16px; }
+  .campo { margin-bottom: 12px; display: flex; flex-direction: column; }
+  .campo label { font-size: 0.83em; font-weight: bold; color: #2d6a4f; margin-bottom: 3px; }
+  .campo input, .campo select, .campo textarea { padding: 7px 9px; border: 1px solid #ccc; font-size: 0.88em; width: 100%; }
+  .campo textarea { resize: vertical; min-height: 50px; }
+
+  .pie-modal { display: flex; justify-content: space-between; margin-top: 14px; }
+  .pie-modal button { padding: 8px 20px; border: none; font-size: 0.88em; cursor: pointer; }
+  #btnGuardar { background: #2d6a4f; color: white; }
+  #btnGuardar:hover { background: #1b4332; }
+  #btnCerrar { background: #ccc; color: #333; }
+  #btnCerrar:hover { background: #bbb; }
+</style>
+</head>
+<body>
+
+<!-- Contenedor de fondo con tabla -->
+<div id="contenedorFondo" class="contenedorActivo">
+  <header>
+    <h1>Esp20 — Sistema Integrado: Tabla y Formulario</h1>
+    <button id="btCargarDatos">Cargar Datos</button>
+    <button id="btVaciarDatos">Vaciar Datos</button>
+    <button id="btCargarFormulario">Cargar Formulario</button>
+  </header>
+
+  <div class="zona-tabla">
+    <table>
+      <thead>
+        <tr>
+          <th>Nro. Comprobante</th>
+          <th>Factura Imputada</th>
+          <th>Tipo</th>
+          <th>Cód. Cliente</th>
+          <th>Observaciones</th>
+          <th>Fecha</th>
+          <th>Total Neto</th>
+        </tr>
+      </thead>
+      <tbody id="tbDatos"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="7">Encabezados de Notas de Crédito de Ventas — Tabla #9</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <p class="volver"><a href="../index.html">← Volver al índice de Especiales</a></p>
+</div>
+
+<!-- Modal con el formulario de alta (inicia apagado) -->
+<div id="ventanaModal" class="ventanaModalApagado">
+  <h2>Nueva Nota de Crédito</h2>
+
+  <div class="campo">
+    <label for="NroComprobante">Nro. Comprobante</label>
+    <input type="text" id="NroComprobante" placeholder="NC-0001-00000000">
+  </div>
+  <div class="campo">
+    <label for="NroDeFacturaImputada">Nro. Factura Imputada</label>
+    <input type="text" id="NroDeFacturaImputada" placeholder="FC-0001-00000000">
+  </div>
+  <div class="campo">
+    <label for="selectTipoComprobante">Tipo de Comprobante</label>
+    <!-- Llenado dinámicamente desde JSON -->
+    <select id="selectTipoComprobante"></select>
+  </div>
+  <div class="campo">
+    <label for="CodCliente">Código de Cliente</label>
+    <input type="text" id="CodCliente" placeholder="CLI-0000">
+  </div>
+  <div class="campo">
+    <label for="Observaciones">Observaciones</label>
+    <textarea id="Observaciones" placeholder="Descripción del motivo..."></textarea>
+  </div>
+  <div class="campo">
+    <label for="fechaComprobante">Fecha del Comprobante</label>
+    <input type="date" id="fechaComprobante">
+  </div>
+  <div class="campo">
+    <label for="TotalNetoComprobante">Total Neto</label>
+    <input type="number" id="TotalNetoComprobante" step="0.01" placeholder="0.00">
+  </div>
+
+  <div class="pie-modal">
+    <button id="btnCerrar">✕ Cerrar</button>
+    <button id="btnGuardar">Guardar</button>
+  </div>
+</div>
+
+<!-- Datos -->
+<script src="../notasCredito.js"></script>
+<script src="../tiposComprobante.js"></script>
+<!-- jQuery -->
+<script src="../jquery.js"></script>
+<!-- Lógica del sistema integrado -->
+<script src="ejercicio4.js"></script>
+
+</body>
+</html>
