@@ -1,36 +1,75 @@
-// Carga los tipos de comprobante desde el servidor y los carga en todos los <select> con id="selTipoComprobante"
+// Carga tipos de comprobante y llena #selTipoComprobante.
+// callbackExtra recibe la respuestaServer completa para uso adicional (ej: llenar tabla).
 function cargarTiposComprobante(callbackExtra) {
-    $.getJSON('../Php/backend/obtener_tipos_comprobante.php', function(respuestaServer) {
-        var $sel = $("#selTipoComprobante");
-        $sel.empty().append('<option value="">-- Seleccione --</option>');
+    $.getJSON('./backend/obtener_tipos_comprobante.php', function(respuestaServer) {
+        var objSelect = document.getElementById("selTipoComprobante");
+        objSelect.innerHTML = '';
+
+        var objOptionDefault = document.createElement("option");
+        objOptionDefault.value = "";
+        objOptionDefault.innerHTML = "-- Seleccione tipo --";
+        objSelect.appendChild(objOptionDefault);
+
         respuestaServer.tiposComprobante.forEach(function(tipo) {
-            $sel.append('<option value="' + tipo.codigo + '">' + tipo.codigo + ' – ' + tipo.descripcion + '</option>');
+            var objOption = document.createElement("option");
+            objOption.value = tipo.codigo;
+            objOption.innerHTML = tipo.codigo + ' – ' + tipo.descripcion;
+            objSelect.appendChild(objOption);
         });
+
         if (typeof callbackExtra === 'function') callbackExtra(respuestaServer);
     });
 }
 
-// Carga las notas de crédito y las renderiza en #tbDatos. Acepta codCliente opcional para filtrar.
+// Carga notas de crédito y llena #tbDatos. Acepta codCliente opcional para filtrar via $_GET.
 function cargarNotasCredito(codCliente) {
-    var url = '../Php/backend/obtener_notas_credito.php';
+    var url = './backend/obtener_notas_credito.php';
     if (codCliente && codCliente.trim() !== '') {
         url += '?codCliente=' + encodeURIComponent(codCliente.trim());
     }
 
     $.getJSON(url, function(respuestaServer) {
-        var $tbody = $("#tbDatos");
-        $tbody.empty();
+        $("#tbDatos").empty();
 
         respuestaServer.notasCredito.forEach(function(nota) {
-            var $tr = $('<tr>');
-            $tr.append($('<td>').attr('campo-dato', 'NroComprobante').text(nota.NroComprobante));
-            $tr.append($('<td>').attr('campo-dato', 'NroDeFacturaImputada').text(nota.NroDeFacturaImputada));
-            $tr.append($('<td>').attr('campo-dato', 'TipoComprobante').text(nota.TipoComprobante));
-            $tr.append($('<td>').attr('campo-dato', 'CodCliente').text(nota.CodCliente));
-            $tr.append($('<td>').attr('campo-dato', 'Observaciones').text(nota.Observaciones));
-            $tr.append($('<td>').attr('campo-dato', 'fechaComprobante').text(nota.fechaComprobante));
-            $tr.append($('<td>').attr('campo-dato', 'TotalNetoComprobante').text('$' + nota.TotalNetoComprobante.toLocaleString('es-AR')));
-            $tbody.append($tr);
+            var objTr = document.createElement("tr");
+
+            var objTdNro = document.createElement("td");
+            objTdNro.setAttribute("campo-dato", "NroComprobante");
+            objTdNro.innerHTML = nota.NroComprobante;
+            objTr.appendChild(objTdNro);
+
+            var objTdFactura = document.createElement("td");
+            objTdFactura.setAttribute("campo-dato", "NroDeFacturaImputada");
+            objTdFactura.innerHTML = nota.NroDeFacturaImputada;
+            objTr.appendChild(objTdFactura);
+
+            var objTdTipo = document.createElement("td");
+            objTdTipo.setAttribute("campo-dato", "TipoComprobante");
+            objTdTipo.innerHTML = nota.TipoComprobante;
+            objTr.appendChild(objTdTipo);
+
+            var objTdCliente = document.createElement("td");
+            objTdCliente.setAttribute("campo-dato", "CodCliente");
+            objTdCliente.innerHTML = nota.CodCliente;
+            objTr.appendChild(objTdCliente);
+
+            var objTdObs = document.createElement("td");
+            objTdObs.setAttribute("campo-dato", "Observaciones");
+            objTdObs.innerHTML = nota.Observaciones;
+            objTr.appendChild(objTdObs);
+
+            var objTdFecha = document.createElement("td");
+            objTdFecha.setAttribute("campo-dato", "fechaComprobante");
+            objTdFecha.innerHTML = nota.fechaComprobante;
+            objTr.appendChild(objTdFecha);
+
+            var objTdTotal = document.createElement("td");
+            objTdTotal.setAttribute("campo-dato", "TotalNetoComprobante");
+            objTdTotal.innerHTML = '$' + nota.TotalNetoComprobante.toLocaleString('es-AR');
+            objTr.appendChild(objTdTotal);
+
+            $("#tbDatos").append(objTr);
         });
 
         $("#spanTotal").text(respuestaServer.totalRegistros);

@@ -22,7 +22,7 @@
 <body>
     <a class="back" href="index.html">← Volver al índice PHP</a>
     <h1>Ejercicio 1 — Tipos de Comprobante desde PHP</h1>
-    <p>El frontend solicita al servidor los tipos de comprobante via <code>$.getJSON()</code> y los renderiza tanto en un <code>&lt;select&gt;</code> como en una tabla HTML.</p>
+    <p>El frontend solicita al servidor los tipos de comprobante via <code>$.getJSON()</code> y los renderiza en un <code>&lt;select&gt;</code> y en una tabla usando <code>document.createElement</code>.</p>
 
     <div class="seccion">
         <h2>Select cargado dinámicamente</h2>
@@ -41,24 +41,24 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./js/app_php.js"></script>
     <script>
         $(document).ready(function() {
-            $.getJSON('./backend/obtener_tipos_comprobante.php', function(respuestaServer) {
-                // Cargar select
-                var $sel = $("#selTipoComprobante");
-                $sel.empty().append('<option value="">-- Seleccione tipo --</option>');
-
-                // Cargar tabla
-                var $tbody = $("#tbTipos");
-                $tbody.empty();
-
+            // cargarTiposComprobante viene de app_php.js
+            // el callback recibe la respuesta completa para llenar la tabla
+            cargarTiposComprobante(function(respuestaServer) {
                 respuestaServer.tiposComprobante.forEach(function(tipo) {
-                    $sel.append('<option value="' + tipo.codigo + '">' + tipo.codigo + ' – ' + tipo.descripcion + '</option>');
+                    var objTr = document.createElement("tr");
 
-                    var $tr = $('<tr>');
-                    $tr.append($('<td>').text(tipo.codigo));
-                    $tr.append($('<td>').text(tipo.descripcion));
-                    $tbody.append($tr);
+                    var objTdCodigo = document.createElement("td");
+                    objTdCodigo.innerHTML = tipo.codigo;
+                    objTr.appendChild(objTdCodigo);
+
+                    var objTdDesc = document.createElement("td");
+                    objTdDesc.innerHTML = tipo.descripcion;
+                    objTr.appendChild(objTdDesc);
+
+                    $("#tbTipos").append(objTr);
                 });
 
                 $("#spanCantidad").text(respuestaServer.cantidad);

@@ -25,7 +25,7 @@
 <body>
     <a class="back" href="index.html">← Volver al índice PHP</a>
     <h1>Ejercicio 3 — Formulario POST a PHP</h1>
-    <p>El formulario envía los datos via <code>$.ajax()</code> con método POST. PHP los recibe en <code>$_POST</code>, valida y devuelve un JSON de respuesta.</p>
+    <p>El formulario envía datos via <code>$.ajax()</code> con método POST. PHP los recibe en <code>$_POST</code>, valida y devuelve un JSON de respuesta. El select se carga con <code>cargarTiposComprobante</code> de <code>app_php.js</code>.</p>
 
     <form id="frmNotaCredito">
         <div class="campo">
@@ -68,18 +68,12 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./js/app_php.js"></script>
     <script>
         $(document).ready(function() {
-            // Cargar select de tipos desde el servidor
-            $.getJSON('./backend/obtener_tipos_comprobante.php', function(respuestaServer) {
-                var $sel = $("#selTipoComprobante");
-                $sel.empty().append('<option value="">-- Seleccione --</option>');
-                respuestaServer.tiposComprobante.forEach(function(tipo) {
-                    $sel.append('<option value="' + tipo.codigo + '">' + tipo.codigo + ' – ' + tipo.descripcion + '</option>');
-                });
-            });
+            // cargarTiposComprobante viene de app_php.js — llena #selTipoComprobante
+            cargarTiposComprobante();
 
-            // Envío del formulario via AJAX POST
             $("#frmNotaCredito").on('submit', function(e) {
                 e.preventDefault();
                 var $div = $("#divRespuesta");

@@ -24,7 +24,7 @@
 <body>
     <a class="back" href="index.html">← Volver al índice PHP</a>
     <h1>Ejercicio 4 — Variables Globales <code>$_SERVER</code></h1>
-    <p>PHP recorre el arreglo superglobal <code>$_SERVER</code> con <code>foreach</code> y retorna un JSON. El frontend muestra primero las variables clave y luego el listado completo.</p>
+    <p>PHP recorre <code>$_SERVER</code> con <code>foreach</code> y retorna JSON. El frontend construye las cards y la tabla completa con <code>document.createElement</code>.</p>
 
     <h2>Variables clave del servidor</h2>
     <div class="cards" id="divCards">Cargando...</div>
@@ -39,25 +39,43 @@
     <script>
         $(document).ready(function() {
             $.getJSON('./backend/info_servidor.php', function(respuestaServer) {
-                // Cards con variables clave
-                var clavesClave = ['SERVER_NAME', 'SERVER_ADDR', 'REMOTE_ADDR', 'REQUEST_METHOD', 'REQUEST_URI', 'HTTP_USER_AGENT'];
-                var $cards = $("#divCards").empty();
 
-                clavesClave.forEach(function(clave) {
-                    var $card = $('<div class="card">');
-                    $card.append($('<div class="clave">').text(clave));
-                    $card.append($('<div class="valor">').text(respuestaServer[clave] || 'N/A'));
-                    $cards.append($card);
+                // Cards con variables clave
+                var aClavesClave = ['SERVER_NAME', 'SERVER_ADDR', 'REMOTE_ADDR', 'REQUEST_METHOD', 'REQUEST_URI', 'HTTP_USER_AGENT'];
+                var objDivCards = document.getElementById("divCards");
+                objDivCards.innerHTML = '';
+
+                aClavesClave.forEach(function(clave) {
+                    var objCard = document.createElement("div");
+                    objCard.setAttribute("class", "card");
+
+                    var objDivClave = document.createElement("div");
+                    objDivClave.setAttribute("class", "clave");
+                    objDivClave.innerHTML = clave;
+                    objCard.appendChild(objDivClave);
+
+                    var objDivValor = document.createElement("div");
+                    objDivValor.setAttribute("class", "valor");
+                    objDivValor.innerHTML = respuestaServer[clave] || 'N/A';
+                    objCard.appendChild(objDivValor);
+
+                    objDivCards.appendChild(objCard);
                 });
 
-                // Tabla completa (construida desde todasLasVariables recorrido con forEach en JS)
-                var $tbody = $("#tbServidor");
-                $tbody.empty();
+                // Tabla completa — forEach sobre todasLasVariables (recorrido en PHP con foreach)
+                var objTbody = document.getElementById("tbServidor");
                 respuestaServer.todasLasVariables.forEach(function(entrada) {
-                    var $tr = $('<tr>');
-                    $tr.append($('<td>').text(entrada.clave));
-                    $tr.append($('<td>').text(entrada.valor));
-                    $tbody.append($tr);
+                    var objTr = document.createElement("tr");
+
+                    var objTdClave = document.createElement("td");
+                    objTdClave.innerHTML = entrada.clave;
+                    objTr.appendChild(objTdClave);
+
+                    var objTdValor = document.createElement("td");
+                    objTdValor.innerHTML = entrada.valor;
+                    objTr.appendChild(objTdValor);
+
+                    objTbody.appendChild(objTr);
                 });
             });
         });
