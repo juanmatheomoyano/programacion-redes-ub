@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Ej. 3 — Formulario POST</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
+        h1 { font-size: 1.4em; border-bottom: 2px solid #333; padding-bottom: 8px; }
+        .back { font-size: 0.9em; margin-bottom: 20px; display: block; color: #0066cc; text-decoration: none; }
+        .back:hover { text-decoration: underline; }
+        form { background: #fff; padding: 20px 24px; border: 1px solid #ddd; border-radius: 4px; margin-top: 16px; }
+        .campo { margin-bottom: 14px; }
+        label { display: block; font-size: 0.88em; font-weight: bold; margin-bottom: 4px; color: #333; }
+        input, select, textarea { width: 100%; padding: 7px 10px; border: 1px solid #ccc; border-radius: 3px; font-size: 0.93em; box-sizing: border-box; }
+        textarea { height: 70px; resize: vertical; }
+        button[type="submit"] { padding: 8px 20px; background: #333; color: #fff; border: none; border-radius: 3px; cursor: pointer; font-size: 0.95em; margin-top: 6px; }
+        button[type="submit"]:hover { background: #555; }
+        #divRespuesta { margin-top: 20px; padding: 14px 18px; border-radius: 4px; font-size: 0.9em; display: none; }
+        .ok { background: #d4edda; border: 1px solid #28a745; color: #155724; }
+        .error { background: #f8d7da; border: 1px solid #dc3545; color: #721c24; }
+        pre { margin: 8px 0 0 0; font-size: 0.82em; background: rgba(0,0,0,0.05); padding: 8px; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <a class="back" href="index.html">← Volver al índice PHP</a>
+    <h1>Ejercicio 3 — Formulario POST a PHP</h1>
+    <p>El formulario envía los datos via <code>$.ajax()</code> con método POST. PHP los recibe en <code>$_POST</code>, valida y devuelve un JSON de respuesta.</p>
+
+    <form id="frmNotaCredito">
+        <div class="campo">
+            <label for="NroComprobante">Nro. Comprobante *</label>
+            <input type="text" id="NroComprobante" name="NroComprobante" placeholder="Ej: NC-0006">
+        </div>
+        <div class="campo">
+            <label for="NroDeFacturaImputada">Nro. Factura Imputada *</label>
+            <input type="text" id="NroDeFacturaImputada" name="NroDeFacturaImputada" placeholder="Ej: FC-5700">
+        </div>
+        <div class="campo">
+            <label for="selTipoComprobante">Tipo de Comprobante *</label>
+            <select id="selTipoComprobante" name="TipoComprobante">
+                <option value="">Cargando...</option>
+            </select>
+        </div>
+        <div class="campo">
+            <label for="CodCliente">Código de Cliente *</label>
+            <input type="text" id="CodCliente" name="CodCliente" placeholder="Ej: CLI-400">
+        </div>
+        <div class="campo">
+            <label for="Observaciones">Observaciones</label>
+            <textarea id="Observaciones" name="Observaciones" placeholder="Descripción del motivo de la nota de crédito"></textarea>
+        </div>
+        <div class="campo">
+            <label for="fechaComprobante">Fecha Comprobante *</label>
+            <input type="date" id="fechaComprobante" name="fechaComprobante">
+        </div>
+        <div class="campo">
+            <label for="TotalNetoComprobante">Total Neto ($) *</label>
+            <input type="number" id="TotalNetoComprobante" name="TotalNetoComprobante" step="0.01" min="0" placeholder="0.00">
+        </div>
+        <button type="submit">Enviar al servidor</button>
+    </form>
+
+    <div id="divRespuesta">
+        <strong id="spanEstado"></strong>
+        <p id="pMensaje"></p>
+        <pre id="preDetalle"></pre>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Cargar select de tipos desde el servidor
+            $.getJSON('./backend/obtener_tipos_comprobante.php', function(respuestaServer) {
+                var $sel = $("#selTipoComprobante");
+                $sel.empty().append('<option value="">-- Seleccione --</option>');
+                respuestaServer.tiposComprobante.forEach(function(tipo) {
+                    $sel.append('<option value="' + tipo.codigo + '">' + tipo.codigo + ' – ' + tipo.descripcion + '</option>');
+                });
+            });
+
+            // Envío del formulario via AJAX POST
+            $("#frmNotaCredito").on('submit', function(e) {
+                e.preventDefault();
+                var $div = $("#divRespuesta");
+
+                $.ajax({
+                    url: './backend/procesar_nota_credito.php',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function(respuestaServer) {
+                        $div.removeClass('ok error');
+                        if (respuestaServer.estado === 'OK') {
+                            $div.addClass('ok');
+                            $("#spanEstado").text('✔ ' + respuestaServer.estado);
+                        } else {
+                            $div.addClass('error');
+                            $("#spanEstado").text('✖ ' + respuestaServer.estado);
+                        }
+                        $("#pMensaje").text(respuestaServer.mensaje);
+                        $("#preDetalle").text(JSON.stringify(respuestaServer, null, 2));
+                        $div.show();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

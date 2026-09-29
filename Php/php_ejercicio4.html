@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Ej. 4 — Variables $_SERVER</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 860px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
+        h1 { font-size: 1.4em; border-bottom: 2px solid #333; padding-bottom: 8px; }
+        .back { font-size: 0.9em; margin-bottom: 20px; display: block; color: #0066cc; text-decoration: none; }
+        .back:hover { text-decoration: underline; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 20px; }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 14px 16px; }
+        .card .clave { font-size: 0.78em; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 0.04em; }
+        .card .valor { font-size: 0.95em; margin-top: 4px; word-break: break-all; }
+        h2 { font-size: 1em; color: #444; margin-top: 28px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.83em; margin-top: 8px; }
+        th { background: #333; color: #fff; padding: 7px 10px; text-align: left; }
+        td { padding: 6px 10px; border-bottom: 1px solid #eee; word-break: break-all; }
+        td:first-child { font-weight: bold; color: #555; width: 35%; }
+        tr:hover td { background: #f5f8ff; }
+    </style>
+</head>
+<body>
+    <a class="back" href="index.html">← Volver al índice PHP</a>
+    <h1>Ejercicio 4 — Variables Globales <code>$_SERVER</code></h1>
+    <p>PHP recorre el arreglo superglobal <code>$_SERVER</code> con <code>foreach</code> y retorna un JSON. El frontend muestra primero las variables clave y luego el listado completo.</p>
+
+    <h2>Variables clave del servidor</h2>
+    <div class="cards" id="divCards">Cargando...</div>
+
+    <h2>Todas las variables <code>$_SERVER</code></h2>
+    <table>
+        <thead><tr><th>Clave</th><th>Valor</th></tr></thead>
+        <tbody id="tbServidor"></tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.getJSON('./backend/info_servidor.php', function(respuestaServer) {
+                // Cards con variables clave
+                var clavesClave = ['SERVER_NAME', 'SERVER_ADDR', 'REMOTE_ADDR', 'REQUEST_METHOD', 'REQUEST_URI', 'HTTP_USER_AGENT'];
+                var $cards = $("#divCards").empty();
+
+                clavesClave.forEach(function(clave) {
+                    var $card = $('<div class="card">');
+                    $card.append($('<div class="clave">').text(clave));
+                    $card.append($('<div class="valor">').text(respuestaServer[clave] || 'N/A'));
+                    $cards.append($card);
+                });
+
+                // Tabla completa (construida desde todasLasVariables recorrido con forEach en JS)
+                var $tbody = $("#tbServidor");
+                $tbody.empty();
+                respuestaServer.todasLasVariables.forEach(function(entrada) {
+                    var $tr = $('<tr>');
+                    $tr.append($('<td>').text(entrada.clave));
+                    $tr.append($('<td>').text(entrada.valor));
+                    $tbody.append($tr);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

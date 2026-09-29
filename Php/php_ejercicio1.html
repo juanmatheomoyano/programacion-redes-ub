@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Ej. 1 — Tipos de Comprobante</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
+        h1 { font-size: 1.4em; border-bottom: 2px solid #333; padding-bottom: 8px; }
+        .back { font-size: 0.9em; margin-bottom: 20px; display: block; color: #0066cc; text-decoration: none; }
+        .back:hover { text-decoration: underline; }
+        table { width: 100%; border-collapse: collapse; background: #fff; margin-top: 16px; }
+        th { background: #333; color: #fff; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+        td { padding: 8px 12px; border-bottom: 1px solid #ddd; font-size: 0.9em; }
+        tr:hover td { background: #f0f4ff; }
+        select { padding: 6px 10px; font-size: 0.95em; border: 1px solid #ccc; border-radius: 3px; margin-top: 12px; width: 100%; }
+        .meta { margin-top: 14px; font-size: 0.85em; color: #666; }
+        .seccion { margin-top: 28px; }
+        h2 { font-size: 1em; color: #444; }
+    </style>
+</head>
+<body>
+    <a class="back" href="index.html">← Volver al índice PHP</a>
+    <h1>Ejercicio 1 — Tipos de Comprobante desde PHP</h1>
+    <p>El frontend solicita al servidor los tipos de comprobante via <code>$.getJSON()</code> y los renderiza tanto en un <code>&lt;select&gt;</code> como en una tabla HTML.</p>
+
+    <div class="seccion">
+        <h2>Select cargado dinámicamente</h2>
+        <select id="selTipoComprobante"><option>Cargando...</option></select>
+    </div>
+
+    <div class="seccion">
+        <h2>Tabla de tipos recibida del servidor</h2>
+        <table>
+            <thead>
+                <tr><th>Código</th><th>Descripción</th></tr>
+            </thead>
+            <tbody id="tbTipos"></tbody>
+        </table>
+        <p class="meta">Registros recibidos: <strong id="spanCantidad">—</strong></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.getJSON('./backend/obtener_tipos_comprobante.php', function(respuestaServer) {
+                // Cargar select
+                var $sel = $("#selTipoComprobante");
+                $sel.empty().append('<option value="">-- Seleccione tipo --</option>');
+
+                // Cargar tabla
+                var $tbody = $("#tbTipos");
+                $tbody.empty();
+
+                respuestaServer.tiposComprobante.forEach(function(tipo) {
+                    $sel.append('<option value="' + tipo.codigo + '">' + tipo.codigo + ' – ' + tipo.descripcion + '</option>');
+
+                    var $tr = $('<tr>');
+                    $tr.append($('<td>').text(tipo.codigo));
+                    $tr.append($('<td>').text(tipo.descripcion));
+                    $tbody.append($tr);
+                });
+
+                $("#spanCantidad").text(respuestaServer.cantidad);
+            });
+        });
+    </script>
+</body>
+</html>
