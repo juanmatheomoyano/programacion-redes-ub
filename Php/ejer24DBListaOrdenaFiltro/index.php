@@ -123,6 +123,7 @@
     data.append("codigoTipo",           document.getElementById("fCodigoTipo").value);
     data.append("CodCliente",           document.getElementById("fCodCliente").value);
     data.append("fechaComprobante",     document.getElementById("fFechaComprobante").value);
+    data.append("Observaciones",        document.getElementById("fObservaciones").value);
     data.append("orden",                ordenActual);
 
     fetch("salidaJsonNotasCredito.php", {

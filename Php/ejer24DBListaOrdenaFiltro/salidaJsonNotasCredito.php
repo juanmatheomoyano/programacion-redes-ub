@@ -9,6 +9,7 @@ $filtroFactura = $_POST['NroDeFacturaImputada']  ?? '';
 $filtroTipo    = $_POST['codigoTipo']            ?? '';
 $filtroCliente = $_POST['CodCliente']            ?? '';
 $filtroFecha   = $_POST['fechaComprobante']      ?? '';
+$filtroObs     = $_POST['Observaciones']         ?? '';
 $orden         = $_POST['orden']                 ?? 'NroComprobante';
 
 $columnasPermitidas = ['NroComprobante', 'NroDeFacturaImputada', 'codigoTipo', 'CodCliente', 'fechaComprobante', 'TotalNetoComprobante'];
@@ -25,7 +26,8 @@ try {
     $sql .= "NroDeFacturaImputada LIKE CONCAT('%',:NroDeFacturaImputada,'%') AND ";
     $sql .= "codigoTipo           LIKE CONCAT('%',:codigoTipo,'%') AND ";
     $sql .= "CodCliente           LIKE CONCAT('%',:CodCliente,'%') AND ";
-    $sql .= "fechaComprobante     LIKE CONCAT('%',:fechaComprobante,'%') ";
+    $sql .= "fechaComprobante     LIKE CONCAT('%',:fechaComprobante,'%') AND ";
+    $sql .= "Observaciones        LIKE CONCAT('%',:Observaciones,'%') ";
     $sql .= "ORDER BY $orden";
 
     $stmt = $dbh->prepare($sql);
@@ -34,6 +36,7 @@ try {
     $stmt->bindParam(':codigoTipo',           $filtroTipo);
     $stmt->bindParam(':CodCliente',           $filtroCliente);
     $stmt->bindParam(':fechaComprobante',     $filtroFecha);
+    $stmt->bindParam(':Observaciones',        $filtroObs);
     $stmt->execute();
 
     $notasCredito = [];
