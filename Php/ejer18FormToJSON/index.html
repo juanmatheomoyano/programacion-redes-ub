@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejer18 - FormData a JSON</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f0f0f0; color: #222; padding: 40px 24px; }
+  h1 { font-size: 1.2em; color: #1b4332; border-bottom: 2px solid #52b788; padding-bottom: 6px; margin-bottom: 20px; }
+  form { background: white; border: 1px solid #ccc; padding: 24px; max-width: 500px; margin-bottom: 24px; }
+  .campo { margin-bottom: 14px; display: flex; flex-direction: column; }
+  .campo label { font-size: 0.85em; font-weight: bold; color: #2d6a4f; margin-bottom: 4px; }
+  .campo input, .campo select { padding: 8px 10px; border: 1px solid #ccc; font-size: 0.9em; }
+  button { background: #2d6a4f; color: white; border: none; padding: 10px 24px; font-size: 0.9em; cursor: pointer; margin-top: 6px; }
+  button:hover { background: #1b4332; }
+  #divRespuesta { background: white; border: 1px solid #ccc; padding: 20px; max-width: 500px; font-size: 0.88em; display: none; }
+  #divRespuesta h2 { font-size: 1em; color: #1b4332; margin-bottom: 12px; }
+  .fila { margin-bottom: 8px; }
+  .fila strong { color: #2d6a4f; }
+  pre { background: #f4faf6; padding: 10px; border: 1px solid #d8f3dc; font-size: 0.82em; overflow-x: auto; margin-top: 12px; }
+  .volver { display: block; margin-top: 20px; font-size: 0.85em; color: #1b4332; text-decoration: none; }
+  .volver:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<h1>Ejer18 — Formulario completo a JSON con FormData</h1>
+
+<!-- Formulario capturado con FormData -->
+<form id="formNota">
+  <div class="campo">
+    <label for="NroComprobante">Nro. Comprobante</label>
+    <input type="text" id="NroComprobante" name="NroComprobante" placeholder="NC-0001-00000000">
+  </div>
+  <div class="campo">
+    <label for="NroDeFacturaImputada">Nro. Factura Imputada</label>
+    <input type="text" id="NroDeFacturaImputada" name="NroDeFacturaImputada" placeholder="FC-0001-00000000">
+  </div>
+  <div class="campo">
+    <label for="CodCliente">Código de Cliente</label>
+    <input type="text" id="CodCliente" name="CodCliente" placeholder="CLI-0000">
+  </div>
+  <div class="campo">
+    <label for="fechaComprobante">Fecha</label>
+    <input type="date" id="fechaComprobante" name="fechaComprobante">
+  </div>
+  <div class="campo">
+    <label for="TotalNetoComprobante">Total Neto</label>
+    <input type="number" id="TotalNetoComprobante" name="TotalNetoComprobante" step="0.01" placeholder="0.00">
+  </div>
+  <button type="button" id="btnEnviar">Enviar por AJAX</button>
+</form>
+
+<!-- El JSON devuelto por el servidor se muestra aquí -->
+<div id="divRespuesta">
+  <h2>Respuesta del servidor (JSON):</h2>
+  <div id="camposRespuesta"></div>
+  <pre id="jsonRaw"></pre>
+</div>
+
+<a class="volver" href="../index.html">← Volver al índice de PHP</a>
+
+<script>
+  document.getElementById("btnEnviar").addEventListener("click", function() {
+
+    /* Capturar todo el formulario con FormData */
+    var objFormulario = document.getElementById("formNota");
+    var formData = new FormData(objFormulario);
+
+    /* Enviar los datos al servidor con Fetch */
+    fetch("respuesta.php", {
+      method: "POST",
+      body: formData
+    })
+    .then(function(respuesta) { return respuesta.json(); })
+    .then(function(obj) {
+      /* Mostrar los campos del objeto recibido */
+      var html = "";
+      for (var campo in obj) {
+        html += "<div class='fila'><strong>" + campo + ":</strong> " + obj[campo] + "</div>";
+      }
+      document.getElementById("camposRespuesta").innerHTML = html;
+      document.getElementById("jsonRaw").textContent = JSON.stringify(obj, null, 2);
+      document.getElementById("divRespuesta").style.display = "block";
+    })
+    .catch(function(error) {
+      document.getElementById("divRespuesta").innerHTML = "Error: " + error;
+      document.getElementById("divRespuesta").style.display = "block";
+    });
+
+  });
+</script>
+
+</body>
+</html>
