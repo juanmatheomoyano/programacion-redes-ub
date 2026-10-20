@@ -172,7 +172,7 @@
   });
 
   /* Filtros en tiempo real al escribir */
-  ["fNroComprobante","fNroDeFacturaImputada","fCodCliente","fFechaComprobante"].forEach(function(id) {
+  ["fNroComprobante","fNroDeFacturaImputada","fCodCliente","fFechaComprobante","fObservaciones"].forEach(function(id) {
     document.getElementById(id).addEventListener("input", cargarDatos);
   });
   document.getElementById("fCodigoTipo").addEventListener("change", cargarDatos);
