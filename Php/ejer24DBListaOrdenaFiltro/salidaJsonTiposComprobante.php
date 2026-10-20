@@ -1,8 +1,8 @@
 <?php
-$host   = "b6e1dnzjhajzfextbbcs-mysql.services.clever-cloud.com";
-$db     = "b6e1dnzjhajzfextbbcs";
-$user   = "ubfjuywlm1htsjy0";
-$pass   = "yzg4Hjq3yudhhhfTdyJ2";
+$host   = "btqqjt5gvk1qyh1whflo-mysql.services.clever-cloud.com";
+$db     = "btqqjt5gvk1qyh1whflo";
+$user   = "um76goe88d4uuq3n";
+$pass   = "trPHVDlzrx2tQ4F2YsEv";
 
 try {
     $dbh = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
