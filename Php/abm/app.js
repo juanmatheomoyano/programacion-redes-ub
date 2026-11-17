@@ -25,6 +25,11 @@ $(document).ready(function () {
     });
     $("#btnAbrirAlta").click(function () { abrirModalFormulario("alta"); });
 
+    /* ── Filtros: disparar con Enter ── */
+    $(".inputFiltro").on("keydown", function (e) {
+        if (e.key === "Enter") { e.preventDefault(); cargaTabla(); }
+    });
+
     /* ── Cerrar modales ── */
     $(".btnCerrarModal").click(function () { cerrarModales(); });
 
@@ -173,9 +178,10 @@ function verPdf(nroComp) {
         .then(res => res.json())
         .then(data => {
             if (data.error) { alert(data.error); return; }
+            $("#modalRespuesta").addClass("modal-pdf");
             abrirModalRespuesta(
                 "Comprobante Digital: " + nroComp,
-                "<iframe width='100%' height='480px' src='data:application/pdf;base64," + data.documentoPdf + "'></iframe>"
+                "<iframe src='data:application/pdf;base64," + data.documentoPdf + "'></iframe>"
             );
         })
         .catch(err => alert("Error al cargar PDF: " + err));
@@ -219,6 +225,7 @@ function abrirModalFormulario(tipo, item) {
         $("#accionForm").val("alta");
         $("#entNroComp").prop("readonly", false);
         $("#btnSubmitForm").text("Dar de Alta").prop("disabled", false);
+        $("#seccionPdfModi").hide();
         cargarTiposComprobante();
     } else {
         $("#tituloModalForm").text("Modificacion de Nota de Credito");
@@ -229,6 +236,19 @@ function abrirModalFormulario(tipo, item) {
         $("#entFecha").val(item.fechaComprobante);
         $("#entTotal").val(item.TotalNetoComprobante);
         $("#entObservaciones").val(item.Observaciones);
+
+        // Limpiar file input (no puede pre-cargarse por seguridad)
+        document.getElementById("entPdf").value = "";
+
+        // Mostrar seccion PDF existente si corresponde
+        if (item.tienePdf === 1) {
+            $("#seccionPdfModi").show();
+            $("#btnEliminarPdf").off("click").on("click", function () {
+                eliminarPdfRegistro(item.NroComprobante);
+            });
+        } else {
+            $("#seccionPdfModi").hide();
+        }
 
         // Boton nace deshabilitado hasta que el usuario modifique algo
         $("#btnSubmitForm").text("Enviar Modificacion").prop("disabled", true);
@@ -284,5 +304,29 @@ function abrirModalRespuesta(titulo, html) {
 
 function cerrarModales() {
     $(".ventanaModal").css("visibility", "hidden");
+    $("#modalRespuesta").removeClass("modal-pdf");
     $("#contenedorPrincipal").addClass("contenedorActivo").removeClass("contenedorPasivo");
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   eliminarPdfRegistro  —  pone archivo = NULL en la DB
+   ══════════════════════════════════════════════════════════════ */
+function eliminarPdfRegistro(nroComp) {
+    if (!confirm("Eliminar el PDF del comprobante " + nroComp + "?")) return;
+
+    const params = new URLSearchParams();
+    params.append("NroComprobante", nroComp);
+
+    fetch("./eliminarPdf.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params
+    })
+    .then(res => res.text())
+    .then(resp => {
+        alert("Respuesta:\n" + resp);
+        $("#seccionPdfModi").hide();
+    })
+    .catch(err => alert("Error al eliminar PDF: " + err));
 }

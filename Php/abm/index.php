@@ -84,7 +84,7 @@ header button:hover { background: #95d5b2; }
 /* ── Zona de tabla ── */
 .zona-tabla {
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
   padding: 10px 14px;
   display: flex;
   flex-direction: column;
@@ -93,6 +93,7 @@ header button:hover { background: #95d5b2; }
 /* Truco flex para thead fijo + tbody scrolleable */
 table {
   width: 100%;
+  min-width: 920px;
   border-collapse: collapse;
   display: flex;
   flex-direction: column;
@@ -133,14 +134,14 @@ tbody tr:nth-child(even) { background: #f4faf6; }
 tbody tr:hover { background: #d8f3dc; }
 
 /* Anchos de columnas */
-th:nth-child(1), td:nth-child(1) { width: 20%; }
-th:nth-child(2), td:nth-child(2) { width: 18%; }
-th:nth-child(3), td:nth-child(3) { width: 15%; }
+th:nth-child(1), td:nth-child(1) { width: 18%; }
+th:nth-child(2), td:nth-child(2) { width: 16%; }
+th:nth-child(3), td:nth-child(3) { width: 14%; }
 th:nth-child(4), td:nth-child(4) { width: 11%; }
 th:nth-child(5), td:nth-child(5) { width: 11%; }
 th:nth-child(6), td:nth-child(6) { width: 10%; text-align: right; }
 th:nth-child(7), td:nth-child(7) { width: 7%; text-align: center; }
-th:nth-child(8), td:nth-child(8) { width: 8%; text-align: center; }
+th:nth-child(8), td:nth-child(8) { width: 13%; text-align: center; overflow: visible; white-space: normal; }
 
 /* Botones dentro de celdas */
 td button {
@@ -211,6 +212,42 @@ td .btn-baja:hover { background: #922b21; }
 #btnSubmitForm:disabled { background: #aaa; cursor: not-allowed; }
 .btn-cancelar { background: #e0e0e0; color: #333; }
 .btn-cancelar:hover { background: #ccc; }
+
+/* Modal de respuesta grande (para PDF) */
+.modal-pdf {
+  max-width: 86vw;
+  width: 86vw;
+  max-height: 92vh;
+}
+.modal-pdf #cuerpoModalRespuesta iframe {
+  display: block;
+  width: 100%;
+  height: 70vh;
+  border: none;
+}
+
+/* Seccion PDF existente en modificacion */
+#seccionPdfModi {
+  background: #f4faf6;
+  border: 1px solid #95d5b2;
+  border-radius: 3px;
+  padding: 8px 12px;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.82em;
+}
+#seccionPdfModi span { flex: 1; color: #2d6a4f; }
+#btnEliminarPdf {
+  background: #c0392b;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+#btnEliminarPdf:hover { background: #922b21; }
 
 /* Modal de respuesta */
 #cuerpoModalRespuesta pre {
@@ -339,6 +376,10 @@ td .btn-baja:hover { background: #922b21; }
         <label for="entPdf">PDF del Comprobante (opcional)</label>
         <input type="file" id="entPdf" name="documentoPdf" accept=".pdf,application/pdf">
         <small>Solo archivos .pdf. En Modificacion: si no se elige archivo nuevo, el PDF anterior se conserva.</small>
+        <div id="seccionPdfModi" style="display:none;">
+          <span>&#128196; Este registro tiene un PDF adjunto.</span>
+          <button type="button" id="btnEliminarPdf">Eliminar PDF</button>
+        </div>
       </div>
 
     </div><!-- /modal-body -->
