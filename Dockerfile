@@ -1,6 +1,6 @@
 FROM php:8.2-cli
 
-# Agregar PDO y PDO_MySQL para la conexión a base de datos en el ejer24
+# Extensiones necesarias para PDO + MySQL (Clever Cloud / ejer24 / ABM TP Final)
 RUN docker-php-ext-install pdo pdo_mysql
 
 COPY . /app
