@@ -70,7 +70,7 @@ if (!isset($_FILES['documentoPdf']) || empty($_FILES['documentoPdf']['name'])) {
     $respuesta_estado .= "5. Archivo PDF: No se envio archivo (campo vacio).\n";
 } else {
     $contenidoBinario = file_get_contents($_FILES['documentoPdf']['tmp_name']);
-    $sqlBin = "UPDATE notas_credito SET pdfComprobante = :pdf WHERE NroComprobante = :nroComp";
+    $sqlBin = "UPDATE notas_credito SET archivo = :pdf WHERE NroComprobante = :nroComp";
     try {
         $stmtBin = $dbh->prepare($sqlBin);
         $stmtBin->bindParam(':pdf',     $contenidoBinario, PDO::PARAM_LOB);

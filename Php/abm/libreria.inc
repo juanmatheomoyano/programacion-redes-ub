@@ -8,9 +8,13 @@ function autenticacion($login, $passwordPlana) {
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT idUsuario, login, apellido, nombres, contador
+        // Las columnas del DB usan PascalCase (Nombres, Apellido, Password, ContadorSesiones)
+        $sql = "SELECT idUsuario, login,
+                       Apellido   AS apellido,
+                       Nombres    AS nombres,
+                       ContadorSesiones AS contador
                 FROM usuarios
-                WHERE login = :login AND password = :password";
+                WHERE login = :login AND Password = :password";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':login',    $login,        PDO::PARAM_STR);
         $stmt->bindParam(':password', $passwordHash, PDO::PARAM_STR);

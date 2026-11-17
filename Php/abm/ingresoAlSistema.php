@@ -25,7 +25,7 @@ try {
     $dbh = new PDO($dsn, $user, $password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "UPDATE usuarios SET contador = :c WHERE login = :l";
+    $sql = "UPDATE usuarios SET ContadorSesiones = :c WHERE login = :l";
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(':c', $nuevoContador, PDO::PARAM_INT);
     $stmt->bindParam(':l', $usuarioValidado['login'], PDO::PARAM_STR);

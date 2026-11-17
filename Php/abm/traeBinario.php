@@ -16,16 +16,16 @@ try {
     $dbh = new PDO($dsn, $user, $password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT pdfComprobante FROM notas_credito WHERE NroComprobante = :nroComp";
+    $sql = "SELECT archivo FROM notas_credito WHERE NroComprobante = :nroComp";
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(':nroComp', $nroComp, PDO::PARAM_STR);
     $stmt->execute();
     $fila = $stmt->fetch(PDO::FETCH_ASSOC);
     $dbh = null;
 
-    if ($fila && !empty($fila['pdfComprobante'])) {
+    if ($fila && !empty($fila['archivo'])) {
         $obj = new stdClass();
-        $obj->documentoPdf = base64_encode($fila['pdfComprobante']);
+        $obj->documentoPdf = base64_encode($fila['archivo']);
         echo json_encode($obj, JSON_INVALID_UTF8_SUBSTITUTE);
     } else {
         echo json_encode(['error' => 'Este comprobante no tiene PDF adjunto']);

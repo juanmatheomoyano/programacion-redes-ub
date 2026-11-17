@@ -55,19 +55,11 @@ ON DUPLICATE KEY UPDATE Observaciones = VALUES(Observaciones);
 
 -- -------------------------------------------------------------
 -- 3. Tabla de usuarios con contador de sesiones
--- -------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS usuarios (
-    idUsuario INT          AUTO_INCREMENT PRIMARY KEY,
-    login     VARCHAR(50)  NOT NULL UNIQUE,
-    apellido  VARCHAR(50)  NOT NULL,
-    nombres   VARCHAR(50)  NOT NULL,
-    password  VARCHAR(64)  NOT NULL,   -- SHA-256 (64 hex)
-    contador  INT(5)       NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Usuario de prueba: login=juan  |  password=1234
+-- NOTA: La tabla ya existe en el DB (creada por ejer24).
+-- Solo agregar el usuario ABM con SHA-256 si no existe.
 -- sha256('1234') = 03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4
-INSERT INTO usuarios (login, apellido, nombres, password, contador)
+-- -------------------------------------------------------------
+INSERT INTO usuarios (login, Apellido, Nombres, Password, ContadorSesiones)
 VALUES ('juan','Moyano','Juan',
         '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 0)
-ON DUPLICATE KEY UPDATE apellido = VALUES(apellido);
+ON DUPLICATE KEY UPDATE Apellido = VALUES(Apellido);

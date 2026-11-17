@@ -31,7 +31,7 @@ try {
                    nc.Observaciones,
                    nc.fechaComprobante,
                    nc.TotalNetoComprobante,
-                   CASE WHEN nc.pdfComprobante IS NOT NULL THEN 1 ELSE 0 END AS tienePdf
+                   CASE WHEN nc.archivo IS NOT NULL THEN 1 ELSE 0 END AS tienePdf
             FROM notas_credito nc
             INNER JOIN tipos_comprobante tc ON nc.codigoTipo = tc.codigoTipo
             WHERE nc.NroComprobante       LIKE CONCAT('%', :nroComp, '%')

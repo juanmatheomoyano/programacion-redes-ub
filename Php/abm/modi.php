@@ -46,7 +46,7 @@ try {
     // --- Etapa 5: Actualizacion opcional del binario PDF ---
     if (isset($_FILES['documentoPdf']) && !empty($_FILES['documentoPdf']['name'])) {
         $contenidoPdf = file_get_contents($_FILES['documentoPdf']['tmp_name']);
-        $sqlBin = "UPDATE notas_credito SET pdfComprobante = :pdf WHERE NroComprobante = :nroComp";
+        $sqlBin = "UPDATE notas_credito SET archivo = :pdf WHERE NroComprobante = :nroComp";
         $stmtBin = $dbh->prepare($sqlBin);
         $stmtBin->bindParam(':pdf',     $contenidoPdf, PDO::PARAM_LOB);
         $stmtBin->bindParam(':nroComp', $nroComp,      PDO::PARAM_STR);
